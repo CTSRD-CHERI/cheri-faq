@@ -5,6 +5,7 @@ multilingual = false
 src = "src"
 title = "CHERI FAQ"
 
+
 [output.html]
 git-repository-url = "https://github.com/CTSRD-CHERI/cheri-faq"
 site-url = "/cheri-faq/"
