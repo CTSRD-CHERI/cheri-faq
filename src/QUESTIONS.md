@@ -345,7 +345,7 @@ You can list all available software on CheriBSD with `pkg64c rquery %n` and
 Alternatively, you can search for a specific package using
 `pkg64c search <pattern>` and `pkg64 search <pattern>`.
 
-If you simply require a list of packages indendently of CheriBSD, there are tarballs on [pkg.cheribsd.org](https://pkg.cheribsd.org) that contain JSON-formatted data. To generate a list of CHERI packages with specific fields, you can use `curl`, `tar`, and `jq`:
+If you simply require a list of packages independently of CheriBSD, there are tarballs on [pkg.cheribsd.org](https://pkg.cheribsd.org) that contain JSON-formatted data. To generate a list of CHERI packages with specific fields, you can use `curl`, `tar`, and `jq`:
 ```bash
 curl -O https://pkg.cheribsd.org/CheriBSD:20220828:aarch64c/packagesite.txz
 tar xf *.txz
