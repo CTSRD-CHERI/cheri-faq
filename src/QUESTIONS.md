@@ -2,8 +2,16 @@
 
 ### What is CHERI?
 
-See
-[An Introduction to CHERI](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf).
+CHERI (Capability Hardware Enhanced RISC Instructions) is an international research project to revisit the fundamental security assumptions in both hardware and software. [An Introduction to CHERI](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf) provides a high-level overview of the project. It builds upon an earlier fruit-themed project known as [BERI](https://www.cl.cam.ac.uk/research/security/ctsrd/beri/).
+
+
+### What types of threat has CHERI been designed to prevent?
+
+CHERI has been developed to have two applications: memory-safe C/C++ and software compartmentalization.
+
+Memory-safe C/C++ includes spatial, referential, and temporal protection mechanisms, defending against both vulnerabilities and exploitation techniques. Out-of-bound writes and reads, i.e. [buffer overflows](https://en.wikipedia.org/wiki/Buffer_overflow) and over-reads, are but two examples of spatial access vulnerability that can be avoided. Exploit chains and techniques, such as the [confused deputy problem](https://en.wikipedia.org/wiki/Confused_deputy_problem), can be prevented directly.
+
+[Compartmentalizations](https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/cheri-compartmentalization.html) are fine-grained models that sandbox a given application, limiting the likelihood of it crashing and resulting in a denial of service if attacked. Such a compartment therefore provides resilience to a variety of applications or services that need to demonstrate high-availability or -reliability, e.g. image processors. Where malicious payloads would ordinarily crash or compromise the image processor, the compartmentalized application would simply render the standard icon for missing images in the browser instead.
 
 
 ### What CHERI-extended hardware is available to use?
