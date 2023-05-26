@@ -2,8 +2,12 @@
 
 ### What is CHERI?
 
-See
-[An Introduction to CHERI](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf).
+[CHERI](https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/) (Capability Hardware Enhanced RISC Instructions) is a joint research project by SRI International and the University of Cambridge to revisit fundamental design choices in hardware and software to dramatically improve system security. [An Introduction to CHERI](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf) provides a high-level introduction to CHERI.
+
+
+### What types of threat has CHERI been designed to prevent?
+
+CHERI enables fine-grained memory protection (e.g. to prevent out-of-bounds and use-after-free bugs) and highly scalable software compartmentalization (e.g. to mitigate future or unknown vulnerabilities in third-party software).
 
 
 ### What CHERI-extended hardware is available to use?
@@ -105,6 +109,25 @@ code:
    * For Arm Morello: `cheribuild.py run-morello-purecap -d`
 
    * For CHERI-RISC-V: `cheribuild.py run-riscv64-purecap -d`
+
+
+### Where are cheribuild.py images and build files stored?
+
+By default, images built by `cheribuild.py` are stored in `$HOME/cheri/output` and build files in `$HOME/cheri/build`.
+
+
+### Can I build a custom CheriBSD branch using cheribuild.py?
+
+Yes. `cheribuild.py` implements several flags to allow you to build multiple CheriBSD branches and store the results separately:
+* `--cheribsd-<target>/source-directory /path/to/your/branch` to specify a custom branch's source code directory.
+* `--cheribsd-<target>/build-directory /path/to/your/build` to specify where build files should be stored.
+* `--cheribsd-<target>/install-directory /path/to/your/rootfs` to specify where root filesystem files should be installed.
+* `--disk-image-<target>/path /path/to/your/image.img` to specify where a disk image should be stored.
+
+
+### Can I develop baremetal applications for Arm Morello?
+
+See this [example](https://git.morello-project.org/morello/docs/-/blob/morello/mainline/common/standalone-baremetal-readme.rst) application.
 
 
 ## Operating systems
@@ -306,6 +329,8 @@ You can list all available software on CheriBSD with `pkg64c rquery %n` and
 `pkg64 rquery %n`.
 Alternatively, you can search for a specific package using
 `pkg64c search <pattern>` and `pkg64 search <pattern>`.
+
+You can browse CheriABI and hybrid ABI package repositories at [pkg.cheribsd.org](https://pkg.cheribsd.org/).
 
 The packages are built using
 [CheriBSD ports](https://github.com/CTSRD-CHERI/cheribsd-ports),
