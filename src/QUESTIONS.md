@@ -46,6 +46,28 @@ website and follow the instructions there.
    * For CHERI-RISC-V: `cheribuild.py run-riscv64-purecap -d`
 
 
+### Where are the cheribuild.py images and builds stored?
+
+By default, any images will reside in `$HOME/cheri/output` and builds in `$HOME/cheri/build`.
+
+
+### Can I build targets from specific branches using cheribuild.py?
+
+Yes. Once executed, the cheribuild.py script will create a `$HOME/cheri` directory to contain all of the repositories, builds, and configuration needed. If you change to the specific directory for your target, you will then be able to check out the correct branch and run `./cheribuild.py` against it.
+```bash
+cd $HOME/cheri/cheribsd
+git checkout releng/22.12
+
+cd $HOME/cheribuild
+./cheribuild.py cheribsd-morello-purecap
+```
+
+
+### Can I develop bare-metal applications for Morello?
+
+Yes. Arm have created an example of a [bare-metal application](https://git.morello-project.org/morello/docs/-/blob/morello/mainline/common/standalone-baremetal-readme.rst) for the board.
+
+
 ## Operating systems
 
 
@@ -89,6 +111,9 @@ If you intend to work with code that runs on UNIX-like operating systems, we
 recommend you to start with CheriBSD.
 
 
+## CheriBSD
+
+
 ### How do I get started with CheriBSD on Morello?
 
 Follow the
@@ -99,6 +124,80 @@ The guide has been structured to make you aware of actions you should take
 before trying to use CheriBSD.
 Of critical importance, you should upgrade your Morello board firmware before
 installing CheriBSD.
+
+
+### How can I upgrade CheriBSD?
+
+Currently, there are no binary upgrades for CheriBSD.
+
+The only way to upgrade a CheriBSD host is to build and install CheriBSD from
+source code.
+See the
+[wiki page](https://github.com/CTSRD-CHERI/cheripedia/wiki/HOWTO:-Build-CheriBSD-natively-on-Morello)
+for instructions how to do this.
+Note that we cannot guarantee stability when upgrading CheriBSD and it is
+important to make sure you can recover your data if an upgrade fails.
+
+
+### How can I build CheriBSD from source code?
+
+You have two choices:
+* Build and install CheriBSD natively on Arm Morello using
+[these instructions](https://github.com/CTSRD-CHERI/cheripedia/wiki/HOWTO:-Build-CheriBSD-natively-on-Morello)
+
+* Cross-compile (on FreeBSD, macOS or Linux) CheriBSD for CHERI-RISC-V or Arm Morello using
+[cheribuild](https://github.com/CTSRD-CHERI/cheribuild)
+
+
+### Does CheriBSD implement spatial safety (e.g., to prevent out-of-bounds bugs)?
+
+The official CheriBSD release runs basic programs and libraries compiled
+for the pure-capability ABI and a hybrid kernel.
+
+It also includes a pure-capability kernel in
+`/boot/kernel.GENERIC-MORELLO-PURECAP`.
+See
+[these instructions](/#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel)
+to find out how to do that.
+
+
+### Does CheriBSD implement temporal safety (e.g., to prevent use-after-free bugs)?
+
+Currently, the official CheriBSD release does not include temporal safety
+mechanisms.
+This feature (also known as Cornucopia in CheriBSD) is scheduled for a future
+release and can be used today by installing a Cornucopia-enabled kernel and
+revocation-aware memory allocators.
+
+See the
+[Cornucopia tutorial](https://github.com/CTSRD-CHERI/cheripedia/wiki/HOWTO:-Use-Cornucopia-with-the-22.12-CheriBSD-Release)
+to read more how to use it.
+
+
+### How can I switch to another CheriBSD kernel (e.g., a pure-capability kernel)?
+
+Use one of the following methods:
+* Run `nextboot -k KERNCONF`
+
+  See [nextboot(8)](https://man.cheribsd.org/cgi-bin/man.cgi/nextboot.8) for more
+  details.
+
+* Add `kernel="KERNCONF"` to `/boot/loader.conf`
+
+  See [loader.conf(5)](https://man.cheribsd.org/cgi-bin/man.cgi/loader.conf.5) for
+  more details.
+
+* In a boot loader, press `5` multiple times to select `KERNCONF`
+
+`KERNCONF` is a name of a directory in the `/boot` directory with a kernel
+(e.g., `kernel.GENERIC-MORELLO-PURECAP`) that corresponds to a kernel
+configuration file from CheriBSD source code (e.g.,
+[GENERIC-MORELLO-PURECAP](https://github.com/CTSRD-CHERI/cheribsd/blob/main/sys/arm64/conf/GENERIC-MORELLO-PURECAP)).
+
+
+### Is there any IDE for CheriBSD?
+
+No. The closest to it is Kate Editor but it is still far from an actual IDE.
 
 
 ## Software porting
@@ -246,6 +345,17 @@ You can list all available software on CheriBSD with `pkg64c rquery %n` and
 Alternatively, you can search for a specific package using
 `pkg64c search <pattern>` and `pkg64 search <pattern>`.
 
+If you simply require a list of packages indendently of CheriBSD, there are tarballs on [pkg.cheribsd.org](https://pkg.cheribsd.org) that contain JSON-formatted data. To generate a list of CHERI packages with specific fields, you can use `curl`, `tar`, and `jq`:
+```bash
+curl -O https://pkg.cheribsd.org/CheriBSD:20220828:aarch64c/packagesite.txz
+tar xf *.txz
+jq -j '.name," (",.version,"; ",.abi,"): ",.www,"\n"' *.yaml | sort -uf > aarch64c.txt
+```
+To create a similar list of hybrid packages, use the following instead:
+```bash
+curl -O https://pkg.cheribsd.org/CheriBSD:20220828:aarch64/packagesite.txz
+```
+
 The packages are built using
 [CheriBSD ports](https://github.com/CTSRD-CHERI/cheribsd-ports),
 a fork of
@@ -297,86 +407,6 @@ wiki page for `print` command output formats.
   [cocalls branch](https://github.com/CTSRD-CHERI/cheribsd/tree/cocalls).
 
   There are plans to make this model available for Morello as well.
-
-
-## CheriBSD
-
-
-### How can I upgrade CheriBSD?
-
-Currently, there are no binary upgrades for CheriBSD.
-
-The only way to upgrade a CheriBSD host is to build and install CheriBSD from
-source code.
-See the
-[wiki page](https://github.com/CTSRD-CHERI/cheripedia/wiki/HOWTO:-Build-CheriBSD-natively-on-Morello)
-for instructions how to do this.
-Note that we cannot guarantee stability when upgrading CheriBSD and it is
-important to make sure you can recover your data if an upgrade fails.
-
-
-### How can I build CheriBSD from source code?
-
-You have two choices:
-* Build and install CheriBSD natively on Arm Morello using
-[these instructions](https://github.com/CTSRD-CHERI/cheripedia/wiki/HOWTO:-Build-CheriBSD-natively-on-Morello)
-
-* Cross-compile (on FreeBSD, macOS or Linux) CheriBSD for CHERI-RISC-V or Arm Morello using
-[cheribuild](https://github.com/CTSRD-CHERI/cheribuild)
-
-
-### Does CheriBSD implement spatial safety (e.g., to prevent out-of-bounds bugs)?
-
-The official CheriBSD release runs basic programs and libraries compiled
-for the pure-capability ABI and a hybrid kernel.
-
-It also includes a pure-capability kernel in
-`/boot/kernel.GENERIC-MORELLO-PURECAP`.
-See
-[these instructions](/#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel)
-to find out how to do that.
-
-
-### Does CheriBSD implement temporal safety (e.g., to prevent use-after-free bugs)?
-
-Currently, the official CheriBSD release does not include temporal safety
-mechanisms.
-This feature (also known as Cornucopia in CheriBSD) is scheduled for a future
-release and can be used today by installing a Cornucopia-enabled kernel and
-revocation-aware memory allocators.
-
-See the
-[Cornucopia tutorial](https://github.com/CTSRD-CHERI/cheripedia/wiki/HOWTO:-Use-Cornucopia-with-the-22.12-CheriBSD-Release)
-to read more how to use it.
-
-
-<!--
-NOTE: When changing this title, remember to update references in this document.
--->
-### How can I switch to another CheriBSD kernel (e.g., a pure-capability kernel)?
-
-Use one of the following methods:
-* Run `nextboot -k KERNCONF`
-
-  See [nextboot(8)](https://man.cheribsd.org/cgi-bin/man.cgi/nextboot.8) for more
-  details.
-
-* Add `kernel="KERNCONF"` to `/boot/loader.conf`
-
-  See [loader.conf(5)](https://man.cheribsd.org/cgi-bin/man.cgi/loader.conf.5) for
-  more details.
-
-* In a boot loader, press `5` multiple times to select `KERNCONF`
-
-`KERNCONF` is a name of a directory in the `/boot` directory with a kernel
-(e.g., `kernel.GENERIC-MORELLO-PURECAP`) that corresponds to a kernel
-configuration file from CheriBSD source code (e.g.,
-[GENERIC-MORELLO-PURECAP](https://github.com/CTSRD-CHERI/cheribsd/blob/main/sys/arm64/conf/GENERIC-MORELLO-PURECAP)).
-
-
-### Is there any IDE for CheriBSD?
-
-No. The closest to it is Kate Editor but it is still far from an actual IDE.
 
 
 ## Community
