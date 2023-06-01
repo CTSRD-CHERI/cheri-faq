@@ -30,7 +30,68 @@ Go to the
 website and follow the instructions there.
 
 
-### How can I emulate CHERI?
+### How can I emulate a CHERI-enabled environment?
+
+You can use pre-compiled Docker images from
+[Docker Hub](https://hub.docker.com/u/ctsrd)
+that include a ready-to-use QEMU-based CheriBSD VM and LLVM to cross-compile
+code:
+
+1. Download a Docker image.
+
+   * For Arm Morello:
+
+     ```
+     docker pull ctsrd/cheribsd-sdk-qemu-morello-purecap
+     ```
+
+   * For CHERI-RISC-V:
+
+     ```
+     docker pull ctsrd/cheribsd-sdk-qemu-riscv64-purecap
+     ```
+
+1. Run a shell in a Docker container. The container will stop once you exit this
+   session.
+
+   * For Arm Morello:
+
+     ```
+     docker run -ti --rm --name cheribsd-morello \
+         ctsrd/cheribsd-sdk-qemu-morello-purecap:latest
+     ```
+
+   * For CHERI-RISC-V:
+
+     ```
+     docker run -ti --rm --name cheribsd-riscv \
+         ctsrd/cheribsd-sdk-qemu-riscv64-purecap:latest
+     ```
+
+1. Run a QEMU-based VM with CheriBSD and use `root` to log in once the `login:`
+   prompt appears.
+
+   * For Arm Morello:
+
+     ```
+     docker exec -ti cheribsd-morello \
+         /opt/cheri/cheribuild/cheribuild.py run-morello-purecap
+     ```
+
+   * For CHERI-RISC-V:
+
+     ```
+     docker exec -ti cheribsd-riscv \
+         /opt/cheri/cheribuild/cheribuild.py run-riscv64-purecap
+     ```
+
+1. You can compile code in the QEMU VM, as explained in the
+   [Getting Started with CheriBSD guide](https://ctsrd-cheri.github.io/cheribsd-getting-started/helloworld/index.html),
+   or cross-compile it in the Docker container shell session using a compiler
+   in the directory `/opt/cheri/output/morello-sdk/bin/`.
+
+
+### How can I build and emulate a CHERI-enabled environment?
 
 1. Clone the
    [cheribuild](https://github.com/CTSRD-CHERI/cheribuild)
