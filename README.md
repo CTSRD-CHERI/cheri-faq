@@ -18,7 +18,10 @@ might find this document useful when exploring their project prototype ideas.
 ## Building
 
 Building the book from the Markdown sources requires
-[mdBook](https://github.com/rust-lang/mdBook). Once installed, `mdbook build`
+[mdBook](https://github.com/rust-lang/mdBook)
+and
+[mdbook-toc](https://crates.io/crates/mdbook-toc).
+Once installed, `mdbook build`
 will build the static HTML files in the `book/` directory, whilst `mdbook
 serve` will build and serve them at `http://localhost:3000`. Please refer to
 the mdBook documentation for futher options.
