@@ -194,7 +194,71 @@ Morello FVP.</p>
 <p>Go to the
 <a href="https://www.dsbd.tech/get-involved/morello-board-request/">Digital Security by Design</a>
 website and follow the instructions there.</p>
-<h3><a class="header" href="#how-can-i-emulate-cheri" id="how-can-i-emulate-cheri">How can I emulate CHERI?</a></h3>
+<h3><a class="header" href="#how-can-i-emulate-a-cheri-enabled-environment" id="how-can-i-emulate-a-cheri-enabled-environment">How can I emulate a CHERI-enabled environment?</a></h3>
+<p>You can use pre-compiled Docker images from
+<a href="https://hub.docker.com/u/ctsrd">Docker Hub</a>
+that include a ready-to-use QEMU-based CheriBSD VM and LLVM to cross-compile
+code:</p>
+<ol>
+<li>
+<p>Download a Docker image.</p>
+<ul>
+<li>
+<p>For Arm Morello:</p>
+<pre><code>docker pull ctsrd/cheribsd-sdk-qemu-morello-purecap
+</code></pre>
+</li>
+<li>
+<p>For CHERI-RISC-V:</p>
+<pre><code>docker pull ctsrd/cheribsd-sdk-qemu-riscv64-purecap
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Run a shell in a Docker container. The container will stop once you exit this
+session.</p>
+<ul>
+<li>
+<p>For Arm Morello:</p>
+<pre><code>docker run -ti --rm --name cheribsd-morello \
+    ctsrd/cheribsd-sdk-qemu-morello-purecap:latest
+</code></pre>
+</li>
+<li>
+<p>For CHERI-RISC-V:</p>
+<pre><code>docker run -ti --rm --name cheribsd-riscv \
+    ctsrd/cheribsd-sdk-qemu-riscv64-purecap:latest
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Run a QEMU-based VM with CheriBSD and use <code>root</code> to log in once the <code>login:</code>
+prompt appears.</p>
+<ul>
+<li>
+<p>For Arm Morello:</p>
+<pre><code>docker exec -ti cheribsd-morello \
+    /opt/cheri/cheribuild/cheribuild.py run-morello-purecap
+</code></pre>
+</li>
+<li>
+<p>For CHERI-RISC-V:</p>
+<pre><code>docker exec -ti cheribsd-riscv \
+    /opt/cheri/cheribuild/cheribuild.py run-riscv64-purecap
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>You can compile code in the QEMU VM, as explained in the
+<a href="https://ctsrd-cheri.github.io/cheribsd-getting-started/helloworld/index.html">Getting Started with CheriBSD guide</a>,
+or cross-compile it in the Docker container shell session using a compiler
+in the directory <code>/opt/cheri/output/morello-sdk/bin/</code>.</p>
+</li>
+</ol>
+<h3><a class="header" href="#how-can-i-build-and-emulate-a-cheri-enabled-environment" id="how-can-i-build-and-emulate-a-cheri-enabled-environment">How can I build and emulate a CHERI-enabled environment?</a></h3>
 <ol>
 <li>
 <p>Clone the
