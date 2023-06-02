@@ -112,6 +112,18 @@ If you intend to work with code that runs on UNIX-like operating systems, we
 recommend you to start with CheriBSD.
 
 
+### How do I get started with CheriBSD on Morello?
+
+Follow the
+[Getting Started with CheriBSD guide](https://ctsrd-cheri.github.io/cheribsd-getting-started/)
+and do not skip any section.
+
+The guide has been structured to make you aware of actions you should take
+before trying to use CheriBSD.
+Of critical importance, you should upgrade your Morello board firmware before
+installing CheriBSD.
+
+
 ## Software porting
 
 
@@ -324,18 +336,6 @@ wiki page for `print` command output formats.
 ## CheriBSD
 
 
-### How do I get started with CheriBSD on Morello?
-
-Follow the
-[Getting Started with CheriBSD guide](https://ctsrd-cheri.github.io/cheribsd-getting-started/)
-and do not skip any section.
-
-The guide has been structured to make you aware of actions you should take
-before trying to use CheriBSD.
-Of critical importance, you should upgrade your Morello board firmware before
-installing CheriBSD.
-
-
 ### How can I upgrade CheriBSD?
 
 Currently, there are no binary upgrades for CheriBSD.
@@ -383,7 +383,9 @@ See the
 [Cornucopia tutorial](https://github.com/CTSRD-CHERI/cheripedia/wiki/HOWTO:-Use-Cornucopia-with-the-22.12-CheriBSD-Release)
 to read more how to use it.
 
-
+<!--
+NOTE: When changing this title, remember to update references in this document.
+-->
 ### How can I switch to another CheriBSD kernel (e.g., a pure-capability kernel)?
 
 Use one of the following methods:
