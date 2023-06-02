@@ -64,9 +64,9 @@ Yes. `cheribuild.py` implements several flags to allow you to build multiple Che
 * `--disk-image-<target>/path /path/to/your/image.img` to specify where a disk image should be stored.
 
 
-### Can I develop bare-metal applications for Arm Morello?
+### Can I develop baremetal applications for Arm Morello?
 
-Yes. Arm have created an example of a [bare-metal application](https://git.morello-project.org/morello/docs/-/blob/morello/mainline/common/standalone-baremetal-readme.rst) for the board.
+See this [example](https://git.morello-project.org/morello/docs/-/blob/morello/mainline/common/standalone-baremetal-readme.rst) application.
 
 
 ## Operating systems
@@ -269,16 +269,7 @@ You can list all available software on CheriBSD with `pkg64c rquery %n` and
 Alternatively, you can search for a specific package using
 `pkg64c search <pattern>` and `pkg64 search <pattern>`.
 
-If you simply require a list of packages independently of CheriBSD, there are browsable HTML lists of the ports for both architectures: [AArch64](https://pkg.cheribsd.org/CheriBSD:20220828:aarch64.html) (hybrid) and [AArch64c](https://pkg.cheribsd.org/CheriBSD:20220828:aarch64c.html) (CHERI). In addition, there are tarballs on [pkg.cheribsd.org](https://pkg.cheribsd.org) that contain the raw JSON-formatted package data. To generate a list of CHERI packages with specific fields, you can use `curl`, `tar`, and `jq`:
-```bash
-curl -O https://pkg.cheribsd.org/CheriBSD:20220828:aarch64c/packagesite.txz
-tar xf *.txz
-jq -j '.name," (",.version,"; ",.abi,"): ",.www,"\n"' *.yaml | sort -uf > aarch64c.txt
-```
-To create a similar list of hybrid packages, use the following instead:
-```bash
-curl -O https://pkg.cheribsd.org/CheriBSD:20220828:aarch64/packagesite.txz
-```
+You can browse CheriABI and hybrid ABI package repositories at [pkg.cheribsd.org](https://pkg.cheribsd.org/).
 
 The packages are built using
 [CheriBSD ports](https://github.com/CTSRD-CHERI/cheribsd-ports),
