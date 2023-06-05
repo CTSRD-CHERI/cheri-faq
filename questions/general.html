@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>General - CHERI FAQ</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../cover/index.html">CHERI Frequently Asked Questions</a></li><li class="chapter-item expanded "><a href="../questions/general.html" class="active"><strong aria-hidden="true">1.</strong> General</a></li><li class="chapter-item expanded "><a href="../questions/operating-systems.html"><strong aria-hidden="true">2.</strong> Operating systems</a></li><li class="chapter-item expanded "><a href="../questions/software-porting.html"><strong aria-hidden="true">3.</strong> Software porting</a></li><li class="chapter-item expanded "><a href="../questions/compartmentalization.html"><strong aria-hidden="true">4.</strong> Compartmentalization</a></li><li class="chapter-item expanded "><a href="../questions/cheribsd.html"><strong aria-hidden="true">5.</strong> CheriBSD</a></li><li class="chapter-item expanded "><a href="../questions/community.html"><strong aria-hidden="true">6.</strong> Community</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CHERI FAQ</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/CTSRD-CHERI/cheri-faq" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="general"><a class="header" href="#general">General</a></h2>
+<!-- toc -->
+<h3 id="what-is-cheri"><a class="header" href="#what-is-cheri">What is CHERI?</a></h3>
+<p><a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">CHERI</a> (Capability Hardware Enhanced RISC Instructions) is a joint research project by SRI International and the University of Cambridge to revisit fundamental design choices in hardware and software to dramatically improve system security. <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">An Introduction to CHERI</a> provides a high-level introduction to CHERI.</p>
+<h3 id="what-types-of-threat-has-cheri-been-designed-to-prevent"><a class="header" href="#what-types-of-threat-has-cheri-been-designed-to-prevent">What types of threat has CHERI been designed to prevent?</a></h3>
+<p>CHERI enables fine-grained memory protection (e.g. to prevent out-of-bounds and use-after-free bugs) and highly scalable software compartmentalization (e.g. to mitigate future or unknown vulnerabilities in third-party software).</p>
+<h3 id="what-cheri-extended-hardware-is-available-to-use"><a class="header" href="#what-cheri-extended-hardware-is-available-to-use">What CHERI-extended hardware is available to use?</a></h3>
+<p><a href="https://www.arm.com/architecture/cpu/morello">Arm Morello</a>
+is currently the only System-on-Chip with a CHERI-extended CPU.</p>
+<p>There are several
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/cheri-risc-v.html">CHERI-RISC-V prototypes on FPGA</a>,
+including a superscalar, out-of-order CHERI-Toooba core extending
+<a href="https://github.com/bluespec/Toooba">Toooba</a>
+that
+is based on
+<a href="https://github.com/csail-csg/riscy-OOO">RiscyOO</a>.</p>
+<p>Additionally, CHERI-RISC-V and Morello can be emulated using QEMU-CHERI or
+Morello FVP.</p>
+<h3 id="how-can-i-get-an-arm-morello-board"><a class="header" href="#how-can-i-get-an-arm-morello-board">How can I get an Arm Morello board?</a></h3>
+<p>Go to the
+<a href="https://www.dsbd.tech/get-involved/morello-board-request/">Digital Security by Design</a>
+website and follow the instructions there.</p>
+<h3 id="how-can-i-emulate-a-cheri-enabled-environment"><a class="header" href="#how-can-i-emulate-a-cheri-enabled-environment">How can I emulate a CHERI-enabled environment?</a></h3>
+<p>You can use pre-compiled Docker images from
+<a href="https://hub.docker.com/u/ctsrd">Docker Hub</a>
+that include a ready-to-use QEMU-based CheriBSD VM and LLVM to cross-compile
+code:</p>
+<ol>
+<li>
+<p>Download a Docker image.</p>
+<ul>
+<li>
+<p>For Arm Morello:</p>
+<pre><code>docker pull ctsrd/cheribsd-sdk-qemu-morello-purecap
+</code></pre>
+</li>
+<li>
+<p>For CHERI-RISC-V:</p>
+<pre><code>docker pull ctsrd/cheribsd-sdk-qemu-riscv64-purecap
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Run a shell in a Docker container. The container will stop once you exit this
+session.</p>
+<ul>
+<li>
+<p>For Arm Morello:</p>
+<pre><code>docker run -ti --rm --name cheribsd-morello \
+    ctsrd/cheribsd-sdk-qemu-morello-purecap:latest
+</code></pre>
+</li>
+<li>
+<p>For CHERI-RISC-V:</p>
+<pre><code>docker run -ti --rm --name cheribsd-riscv \
+    ctsrd/cheribsd-sdk-qemu-riscv64-purecap:latest
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Run a QEMU-based VM with CheriBSD and use <code>root</code> to log in once the <code>login:</code>
+prompt appears.</p>
+<ul>
+<li>
+<p>For Arm Morello:</p>
+<pre><code>docker exec -ti cheribsd-morello \
+    /opt/cheri/cheribuild/cheribuild.py run-morello-purecap
+</code></pre>
+</li>
+<li>
+<p>For CHERI-RISC-V:</p>
+<pre><code>docker exec -ti cheribsd-riscv \
+    /opt/cheri/cheribuild/cheribuild.py run-riscv64-purecap
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>You can compile code in the QEMU VM, as explained in the
+<a href="https://ctsrd-cheri.github.io/cheribsd-getting-started/helloworld/index.html">Getting Started with CheriBSD guide</a>,
+or cross-compile it in the Docker container shell session using a compiler
+in the directory <code>/opt/cheri/output/morello-sdk/bin/</code>.</p>
+</li>
+</ol>
+<h3 id="how-can-i-build-and-emulate-a-cheri-enabled-environment"><a class="header" href="#how-can-i-build-and-emulate-a-cheri-enabled-environment">How can I build and emulate a CHERI-enabled environment?</a></h3>
+<ol>
+<li>
+<p>Clone the
+<a href="https://github.com/CTSRD-CHERI/cheribuild">cheribuild</a>
+repository.</p>
+</li>
+<li>
+<p><a href="https://github.com/CTSRD-CHERI/cheribuild#pre-build-setup">Install dependencies</a>
+for your operating system.</p>
+</li>
+<li>
+<p>Build a software stack and run CheriBSD in a QEMU-based VM.</p>
+<ul>
+<li>
+<p>For Arm Morello: <code>cheribuild.py run-morello-purecap -d</code></p>
+</li>
+<li>
+<p>For CHERI-RISC-V: <code>cheribuild.py run-riscv64-purecap -d</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="where-are-cheribuildpy-images-and-build-files-stored"><a class="header" href="#where-are-cheribuildpy-images-and-build-files-stored">Where are cheribuild.py images and build files stored?</a></h3>
+<p>By default, images built by <code>cheribuild.py</code> are stored in <code>$HOME/cheri/output</code> and build files in <code>$HOME/cheri/build</code>.</p>
+<h3 id="can-i-build-a-custom-cheribsd-branch-using-cheribuildpy"><a class="header" href="#can-i-build-a-custom-cheribsd-branch-using-cheribuildpy">Can I build a custom CheriBSD branch using cheribuild.py?</a></h3>
+<p>Yes. <code>cheribuild.py</code> implements several flags to allow you to build multiple CheriBSD branches and store the results separately:</p>
+<ul>
+<li><code>--cheribsd-&lt;target&gt;/source-directory /path/to/your/branch</code> to specify a custom branch's source code directory.</li>
+<li><code>--cheribsd-&lt;target&gt;/build-directory /path/to/your/build</code> to specify where build files should be stored.</li>
+<li><code>--cheribsd-&lt;target&gt;/install-directory /path/to/your/rootfs</code> to specify where root filesystem files should be installed.</li>
+<li><code>--disk-image-&lt;target&gt;/path /path/to/your/image.img</code> to specify where a disk image should be stored.</li>
+</ul>
+<h3 id="can-i-develop-baremetal-applications-for-arm-morello"><a class="header" href="#can-i-develop-baremetal-applications-for-arm-morello">Can I develop baremetal applications for Arm Morello?</a></h3>
+<p>See this <a href="https://git.morello-project.org/morello/docs/-/blob/morello/mainline/common/standalone-baremetal-readme.rst">example</a> application.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cover/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../questions/operating-systems.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cover/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../questions/operating-systems.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Page not found - CHERI FAQ</title>
-        <base href="/cheri-faq/">
+        <title>Community - CHERI FAQ</title>
 
 
         <!-- Custom HTML head -->
@@ -13,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -36,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -84,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="cover/index.html">CHERI Frequently Asked Questions</a></li><li class="chapter-item expanded "><a href="questions/general.html"><strong aria-hidden="true">1.</strong> General</a></li><li class="chapter-item expanded "><a href="questions/operating-systems.html"><strong aria-hidden="true">2.</strong> Operating systems</a></li><li class="chapter-item expanded "><a href="questions/software-porting.html"><strong aria-hidden="true">3.</strong> Software porting</a></li><li class="chapter-item expanded "><a href="questions/compartmentalization.html"><strong aria-hidden="true">4.</strong> Compartmentalization</a></li><li class="chapter-item expanded "><a href="questions/cheribsd.html"><strong aria-hidden="true">5.</strong> CheriBSD</a></li><li class="chapter-item expanded "><a href="questions/community.html"><strong aria-hidden="true">6.</strong> Community</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../cover/index.html">CHERI Frequently Asked Questions</a></li><li class="chapter-item expanded "><a href="../questions/general.html"><strong aria-hidden="true">1.</strong> General</a></li><li class="chapter-item expanded "><a href="../questions/operating-systems.html"><strong aria-hidden="true">2.</strong> Operating systems</a></li><li class="chapter-item expanded "><a href="../questions/software-porting.html"><strong aria-hidden="true">3.</strong> Software porting</a></li><li class="chapter-item expanded "><a href="../questions/compartmentalization.html"><strong aria-hidden="true">4.</strong> Compartmentalization</a></li><li class="chapter-item expanded "><a href="../questions/cheribsd.html"><strong aria-hidden="true">5.</strong> CheriBSD</a></li><li class="chapter-item expanded "><a href="../questions/community.html" class="active"><strong aria-hidden="true">6.</strong> Community</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -116,7 +115,7 @@
                     <h1 class="menu-title">CHERI FAQ</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/CTSRD-CHERI/cheri-faq" title="Git repository" aria-label="Git repository">
@@ -148,13 +147,66 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h2 id="community"><a class="header" href="#community">Community</a></h2>
+<!-- toc -->
+<h3 id="where-should-i-ask-questions-related-to-cheri"><a class="header" href="#where-should-i-ask-questions-related-to-cheri">Where should I ask questions related to CHERI?</a></h3>
+<p>Join the
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/cheri-slack.html">CHERI-CPU</a>
+Slack workspace or the
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/cheri-lists.html">cl-cheri-discuss</a>
+mailing list and ask questions there.</p>
+<p>Alternatively, if your question is related to Linux or Android for Arm Morello,
+you can join the
+<a href="https://community.arm.com/support-forums/f/morello-forum">Morello Forum</a>.</p>
+<h3 id="where-can-i-report-issues-related-to-cheri"><a class="header" href="#where-can-i-report-issues-related-to-cheri">Where can I report issues related to CHERI?</a></h3>
+<p>If you are not sure what is a cause of your issue, you can contact us first,
+as described above.</p>
+<ul>
+<li>
+<p><a href="https://github.com/CTSRD-CHERI/cheribsd-getting-started/issues">Getting Started with CheriBSD on Arm Morello</a></p>
+</li>
+<li>
+<p><a href="https://github.com/CTSRD-CHERI/cheribsd/issues">CheriBSD</a></p>
+</li>
+<li>
+<p><a href="https://github.com/CTSRD-CHERI/cheribsd-ports/issues">CheriBSD ports and packages</a></p>
+</li>
+<li>
+<p><a href="https://git.morello-project.org/morello/llvm-project/-/issues">LLVM-CHERI for Morello</a></p>
+</li>
+<li>
+<p><a href="https://github.com/CTSRD-CHERI/llvm-project/issues">LLVM-CHERI</a></p>
+<p>Issues related to LLVM-CHERI but not specific to Morello should be reported
+here.</p>
+</li>
+<li>
+<p><a href="https://github.com/CTSRD-CHERI/gdb/issues">GDB-CHERI</a></p>
+</li>
+<li>
+<p><a href="https://github.com/CTSRD-CHERI/qemu/issues">QEMU-CHERI</a></p>
+</li>
+</ul>
+<h3 id="how-can-i-contribute-to-this-document"><a class="header" href="#how-can-i-contribute-to-this-document">How can I contribute to this document?</a></h3>
+<p>We encourage anyone interested in improving this document to make contributions
+to it. In order to add a new question:</p>
+<ol>
+<li>
+<p>Add your question and answer to <code>src/questions.md</code>.</p>
+</li>
+<li>
+<p>Create a pull request in the
+<a href="https://github.com/CTSRD-CHERI/cheri-faq/pulls">CTSRD-CHERI/cheri-faq</a>
+repository with your change.</p>
+</li>
+</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../questions/cheribsd.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
 
                         <div style="clear: both"></div>
@@ -163,6 +215,9 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../questions/cheribsd.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
             </nav>
 
@@ -176,13 +231,13 @@
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 

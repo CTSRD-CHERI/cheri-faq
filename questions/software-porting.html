@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Software porting - CHERI FAQ</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../cover/index.html">CHERI Frequently Asked Questions</a></li><li class="chapter-item expanded "><a href="../questions/general.html"><strong aria-hidden="true">1.</strong> General</a></li><li class="chapter-item expanded "><a href="../questions/operating-systems.html"><strong aria-hidden="true">2.</strong> Operating systems</a></li><li class="chapter-item expanded "><a href="../questions/software-porting.html" class="active"><strong aria-hidden="true">3.</strong> Software porting</a></li><li class="chapter-item expanded "><a href="../questions/compartmentalization.html"><strong aria-hidden="true">4.</strong> Compartmentalization</a></li><li class="chapter-item expanded "><a href="../questions/cheribsd.html"><strong aria-hidden="true">5.</strong> CheriBSD</a></li><li class="chapter-item expanded "><a href="../questions/community.html"><strong aria-hidden="true">6.</strong> Community</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CHERI FAQ</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/CTSRD-CHERI/cheri-faq" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="software-porting"><a class="header" href="#software-porting">Software porting</a></h2>
+<!-- toc -->
+<h3 id="what-programming-languages-can-i-use-on-cheri"><a class="header" href="#what-programming-languages-can-i-use-on-cheri">What programming languages can I use on CHERI?</a></h3>
+<ul>
+<li>
+<p>CHERI C/C++</p>
+<p>Currently, the most mature programming languages for CHERI are CHERI C and
+CHERI C++.</p>
+<p>See the
+<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-947.pdf">CHERI C/C++ Programming guide</a>
+for more information.</p>
+</li>
+<li>
+<p>Rust</p>
+<p>There is an
+<a href="https://soft-dev.org/events/cheritech22/slides/Cooksey.pdf">ongoing project</a>
+at the University of Kent to add support for CHERI in Rust.</p>
+</li>
+<li>
+<p>Python/Ruby/Lua/JavaScript/...</p>
+<p>There are no interpreters that support CHERI for these programming languages.</p>
+</li>
+</ul>
+<h3 id="can-i-use-python-with-cheri"><a class="header" href="#can-i-use-python-with-cheri">Can I use Python with CHERI?</a></h3>
+<p>There is no Python interpreter that would run your Python code using
+capability-aware instructions.</p>
+<p>You can use a Python interpreter compiled for a baseline architecture but it
+does not give you any of the security benefits of a CHERI-enabled CPU.</p>
+<h3 id="is-my-software-safer-just-by-running-it-on-a-cheri-extended-cpu"><a class="header" href="#is-my-software-safer-just-by-running-it-on-a-cheri-extended-cpu">Is my software safer just by running it on a CHERI-extended CPU?</a></h3>
+<p>No. While an operating system (i.e., a kernel, basic programs and libraries
+shipped with the OS) might be compiled for the pure-capability ABI and hence
+prevent memory-safety bugs in its components, code compiled for a baseline
+architecture (e.g., AArch64 for Morello, RISC-V for CHERI-RISC-V) does not
+benefit from security features of CHERI.</p>
+<p>You must compile your code to explicitly use CHERI capabilities to access memory
+either by compiling it for the pure-capability ABI or the hybrid ABI with
+appropriate data type qualifiers that indicate the intention of using CHERI
+capabilities in place of legacy C pointers (in case of C/C++).</p>
+<h3 id="what-are-the-pure-capability-and-hybrid-abis"><a class="header" href="#what-are-the-pure-capability-and-hybrid-abis">What are the pure-capability and hybrid ABIs?</a></h3>
+<p>The pure-capability ABI (also known as CheriABI in CheriBSD and PCuABI in Linux
+and Android) is a new process ABI that uses only CHERI capabilities to access
+memory and interact with a kernel.</p>
+<p>The hybrid ABI allows a process to access memory using legacy pointers and CHERI
+capabilities.
+When compiling such C/C++ code, a pointer must be annotated with the
+<code>__capability</code> type qualifier to use a CHERI capability instead of a legacy
+pointer.</p>
+<p>Both pure-capability and hybrid CheriBSD kernels support the pure-capability and
+hybrid ABIs at the same time.
+You can also switch between pure-capability and hybrid CheriBSD kernels without
+replacing user-space programs and libraries.</p>
+<p>See the
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/201904-asplos-cheriabi.pdf">CheriABI</a>
+paper and the
+<a href="https://git.morello-project.org/morello/kernel/linux/-/wikis/Morello-pure-capability-kernel-user-Linux-ABI-specification">PCuABI</a>
+specification for more information on the ABIs.</p>
+<h3 id="should-i-compile-my-code-for-the-pure-capability-or-hybrid-abi"><a class="header" href="#should-i-compile-my-code-for-the-pure-capability-or-hybrid-abi">Should I compile my code for the pure-capability or hybrid ABI?</a></h3>
+<p>In most cases, porting software to the pure-capability ABI is straightforward
+and does not heavily disrupt code.
+For example, the Capabilities Limited company shows in their report
+<a href="https://www.capabilitieslimited.co.uk/_files/ugd/f4d681_e0f23245dace466297f20a0dbd22d371.pdf">Assessing the Viability of an Open-Source CHERI Desktop Software Ecosystem</a>
+that they needed to modify 0.026% lines of code in around 6 million lines
+of code from KDE, Qt, X11 for CheriABI to run KDE Plasma on top of Xvnc on
+CheriBSD.</p>
+<p>It might seem that compiling code for the hybrid ABI is a better approach to
+port software to CHERI than compiling it for the pure-capability ABI because you
+can incrementally introduce CHERI capabilities in your code, and not worry about
+all incompatibilities with CHERI at once.</p>
+<p>However, when using the hybrid ABI, you have to annotate all pointers as CHERI
+capabilities, and still you will not have any guarantees that there are no
+legacy pointers left.
+Additionally, all third-party libraries that your code depends on will not use
+CHERI capabilities, unless you change them as well.</p>
+<p>There are still some situations when choosing the hybrid ABI over the
+pure-capability ABI has benefits.
+In case of extremely large code bases (e.g., the Chromium browser and its
+dependencies), you might want to compartmentalize parts of your code base now
+(e.g., the V8 JavaScript engine in Chromium), parts that are known for security
+vulnerabilities with significant impacts, rather than spend a lot of time
+trying to port the whole project for the pure-capability ABI and then
+compartmentalize it.</p>
+<h3 id="how-easy-it-is-to-compile-cc-code-for-the-pure-capability-abi"><a class="header" href="#how-easy-it-is-to-compile-cc-code-for-the-pure-capability-abi">How easy it is to compile C/C++ code for the pure-capability ABI?</a></h3>
+<p>The LLVM-CHERI assists a developer in C/C++ code porting to CHERI C/C++ by
+printing appropriate warnings whenever it encounters incompatibilities between
+C/C++ and CHERI C/C++ semantics.
+In many cases, it is sufficient to only fix compile-time issues to successfully
+run a program compiled for the pure-capability ABI.</p>
+<p>However, programming language interpreters, Just-in-Time compilers and other
+software that embeds metadata in pointers, implements custom memory allocators
+or performs other non-trivial pointer manipulations can cause run-time issues
+that must be investigated using a debugger.
+A user can examine these issues with the GDB-CHERI debugger that can disassemble
+capability-specific CPU instructions and display properties of CHERI
+capabilities, including their validity, stored in registers and in memory.</p>
+<p>See the
+<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-947.pdf">CHERI C/C++ Programming guide</a>
+for example compiler warnings and solutions to them,
+and the
+<a href="https://ctsrd-cheri.github.io/cheribsd-getting-started/helloworld/index.html">Getting Started with CheriBSD guide</a>
+for an example CheriABI &quot;Hello World&quot; – how to compile and debug it.</p>
+<h3 id="can-i-link-cheri-cc-code-compiled-for-the-pure-capability-abi-and-the-hybrid-abi"><a class="header" href="#can-i-link-cheri-cc-code-compiled-for-the-pure-capability-abi-and-the-hybrid-abi">Can I link CHERI C/C++ code compiled for the pure-capability ABI and the hybrid ABI?</a></h3>
+<p>No. LLVM-CHERI does not allow to link a program for one ABI with libraries
+compiled for another ABI.</p>
+<h3 id="what-software-has-been-ported-to-cheri"><a class="header" href="#what-software-has-been-ported-to-cheri">What software has been ported to CHERI?</a></h3>
+<p>For CheriBSD, there are ~9,000 pre-compiled CheriABI packages, including
+KDE Plasma 5, Git, Rsync, sudo, Bash, tmux.
+Besides that, there are ~24,000 hybrid ABI packages, including LLVM-CHERI,
+GDB-CHERI, Chromium, Firefox, Vim, Python, Meson, Ninja.</p>
+<p>You can list all available software on CheriBSD with <code>pkg64c rquery %n</code> and
+<code>pkg64 rquery %n</code>.
+Alternatively, you can search for a specific package using
+<code>pkg64c search &lt;pattern&gt;</code> and <code>pkg64 search &lt;pattern&gt;</code>.</p>
+<p>You can browse CheriABI and hybrid ABI package repositories at <a href="https://pkg.cheribsd.org/">pkg.cheribsd.org</a>.</p>
+<p>The packages are built using
+<a href="https://github.com/CTSRD-CHERI/cheribsd-ports">CheriBSD ports</a>,
+a fork of
+<a href="https://github.com/freebsd/freebsd-ports">FreeBSD ports</a>
+that includes a collection of ~32,000 third-party software ports for FreeBSD.</p>
+<p>See the
+<a href="https://ctsrd-cheri.github.io/cheribsd-getting-started/packages/">Getting Started with CheriBSD</a>
+guide for more information on third-party software packages,
+and the
+<a href="https://freebsdfoundation.org/wp-content/uploads/2023/05/CheriBSD_ports.pdf">CheriBSD Ports and Packages</a>
+article to read more on the package building process.</p>
+<h3 id="how-can-i-print-a-cheri-capability-in-cheri-cc"><a class="header" href="#how-can-i-print-a-cheri-capability-in-cheri-cc">How can I print a CHERI capability in CHERI C/C++?</a></h3>
+<p>See the
+<a href="https://github.com/CTSRD-CHERI/cheri-c-programming/wiki/Displaying-Capabilities">Displaying Capabilities</a>
+wiki page for
+<a href="https://man.cheribsd.org/cgi-bin/man.cgi/dev/printf.3">printf(3)</a>
+string formats.</p>
+<p>You can also store a formatted string with properties of a CHERI capability
+using
+<a href="https://man.cheribsd.org/cgi-bin/man.cgi/dev/strfcap.3">strfcap(3)</a>.</p>
+<h3 id="how-can-i-display-a-cheri-capability-in-gdb-cheri"><a class="header" href="#how-can-i-display-a-cheri-capability-in-gdb-cheri">How can I display a CHERI capability in GDB-CHERI?</a></h3>
+<p>See the
+<a href="https://github.com/CTSRD-CHERI/cheri-c-programming/wiki/Displaying-Capabilities">Displaying Capabilities</a>
+wiki page for <code>print</code> command output formats.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../questions/operating-systems.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../questions/compartmentalization.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../questions/operating-systems.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../questions/compartmentalization.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

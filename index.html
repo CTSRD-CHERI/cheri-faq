@@ -4,25 +4,16 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>CHERI Frequently Asked Questions - CHERI FAQ</title>
-        
-        
 
 
         <!-- Custom HTML head -->
         
-
-
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="favicon.svg">
-        
-        
         <link rel="shortcut icon" href="favicon.png">
-        
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
@@ -30,9 +21,7 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="fonts/fonts.css">
-        
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
@@ -40,19 +29,18 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
 
-        
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -68,7 +56,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -80,12 +68,14 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -93,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="cover/index.html">CHERI Frequently Asked Questions</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="cover/index.html" class="active">CHERI Frequently Asked Questions</a></li><li class="chapter-item expanded "><a href="questions/general.html"><strong aria-hidden="true">1.</strong> General</a></li><li class="chapter-item expanded "><a href="questions/operating-systems.html"><strong aria-hidden="true">2.</strong> Operating systems</a></li><li class="chapter-item expanded "><a href="questions/software-porting.html"><strong aria-hidden="true">3.</strong> Software porting</a></li><li class="chapter-item expanded "><a href="questions/compartmentalization.html"><strong aria-hidden="true">4.</strong> Compartmentalization</a></li><li class="chapter-item expanded "><a href="questions/cheribsd.html"><strong aria-hidden="true">5.</strong> CheriBSD</a></li><li class="chapter-item expanded "><a href="questions/community.html"><strong aria-hidden="true">6.</strong> Community</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -101,8 +91,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar-hover-placeholder"></div>
+                                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -112,17 +101,15 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">CHERI FAQ</h1>
@@ -131,18 +118,16 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
                         <a href="https://github.com/CTSRD-CHERI/cheri-faq" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        
+
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -150,10 +135,9 @@
                         </ul>
                     </div>
                 </div>
-                
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -163,7 +147,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#cheri-frequently-asked-questions" id="cheri-frequently-asked-questions">CHERI Frequently Asked Questions</a></h1>
+                        <h1 id="cheri-frequently-asked-questions"><a class="header" href="#cheri-frequently-asked-questions">CHERI Frequently Asked Questions</a></h1>
 <p>University of Cambridge, SRI International</p>
 <p>This is a living document with frequently asked questions regarding Capability
 Hardware Enhanced RISC Instructions (CHERI).
@@ -172,12 +156,15 @@ hardware-software stacks, including Arm Morello and CHERI-RISC-V.</p>
 <p>CHERI-related competition participants (e.g., Digital Security by Design
 Technology Access Programme (DSbD TAP), Defence and Security Accelerator (DASA))
 might find this document useful when exploring their project prototype ideas.</p>
-<h2><a class="header" href="#general" id="general">General</a></h2>
-<h3><a class="header" href="#what-is-cheri" id="what-is-cheri">What is CHERI?</a></h3>
+<h2 id="contents"><a class="header" href="#contents">Contents</a></h2>
+<!-- toc -->
+<h2 id="general"><a class="header" href="#general">General</a></h2>
+<!-- toc -->
+<h3 id="what-is-cheri"><a class="header" href="#what-is-cheri">What is CHERI?</a></h3>
 <p><a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">CHERI</a> (Capability Hardware Enhanced RISC Instructions) is a joint research project by SRI International and the University of Cambridge to revisit fundamental design choices in hardware and software to dramatically improve system security. <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">An Introduction to CHERI</a> provides a high-level introduction to CHERI.</p>
-<h3><a class="header" href="#what-types-of-threat-has-cheri-been-designed-to-prevent" id="what-types-of-threat-has-cheri-been-designed-to-prevent">What types of threat has CHERI been designed to prevent?</a></h3>
+<h3 id="what-types-of-threat-has-cheri-been-designed-to-prevent"><a class="header" href="#what-types-of-threat-has-cheri-been-designed-to-prevent">What types of threat has CHERI been designed to prevent?</a></h3>
 <p>CHERI enables fine-grained memory protection (e.g. to prevent out-of-bounds and use-after-free bugs) and highly scalable software compartmentalization (e.g. to mitigate future or unknown vulnerabilities in third-party software).</p>
-<h3><a class="header" href="#what-cheri-extended-hardware-is-available-to-use" id="what-cheri-extended-hardware-is-available-to-use">What CHERI-extended hardware is available to use?</a></h3>
+<h3 id="what-cheri-extended-hardware-is-available-to-use"><a class="header" href="#what-cheri-extended-hardware-is-available-to-use">What CHERI-extended hardware is available to use?</a></h3>
 <p><a href="https://www.arm.com/architecture/cpu/morello">Arm Morello</a>
 is currently the only System-on-Chip with a CHERI-extended CPU.</p>
 <p>There are several
@@ -189,11 +176,11 @@ is based on
 <a href="https://github.com/csail-csg/riscy-OOO">RiscyOO</a>.</p>
 <p>Additionally, CHERI-RISC-V and Morello can be emulated using QEMU-CHERI or
 Morello FVP.</p>
-<h3><a class="header" href="#how-can-i-get-an-arm-morello-board" id="how-can-i-get-an-arm-morello-board">How can I get an Arm Morello board?</a></h3>
+<h3 id="how-can-i-get-an-arm-morello-board"><a class="header" href="#how-can-i-get-an-arm-morello-board">How can I get an Arm Morello board?</a></h3>
 <p>Go to the
 <a href="https://www.dsbd.tech/get-involved/morello-board-request/">Digital Security by Design</a>
 website and follow the instructions there.</p>
-<h3><a class="header" href="#how-can-i-emulate-a-cheri-enabled-environment" id="how-can-i-emulate-a-cheri-enabled-environment">How can I emulate a CHERI-enabled environment?</a></h3>
+<h3 id="how-can-i-emulate-a-cheri-enabled-environment"><a class="header" href="#how-can-i-emulate-a-cheri-enabled-environment">How can I emulate a CHERI-enabled environment?</a></h3>
 <p>You can use pre-compiled Docker images from
 <a href="https://hub.docker.com/u/ctsrd">Docker Hub</a>
 that include a ready-to-use QEMU-based CheriBSD VM and LLVM to cross-compile
@@ -257,7 +244,7 @@ or cross-compile it in the Docker container shell session using a compiler
 in the directory <code>/opt/cheri/output/morello-sdk/bin/</code>.</p>
 </li>
 </ol>
-<h3><a class="header" href="#how-can-i-build-and-emulate-a-cheri-enabled-environment" id="how-can-i-build-and-emulate-a-cheri-enabled-environment">How can I build and emulate a CHERI-enabled environment?</a></h3>
+<h3 id="how-can-i-build-and-emulate-a-cheri-enabled-environment"><a class="header" href="#how-can-i-build-and-emulate-a-cheri-enabled-environment">How can I build and emulate a CHERI-enabled environment?</a></h3>
 <ol>
 <li>
 <p>Clone the
@@ -280,9 +267,9 @@ for your operating system.</p>
 </ul>
 </li>
 </ol>
-<h3><a class="header" href="#where-are-cheribuildpy-images-and-build-files-stored" id="where-are-cheribuildpy-images-and-build-files-stored">Where are cheribuild.py images and build files stored?</a></h3>
+<h3 id="where-are-cheribuildpy-images-and-build-files-stored"><a class="header" href="#where-are-cheribuildpy-images-and-build-files-stored">Where are cheribuild.py images and build files stored?</a></h3>
 <p>By default, images built by <code>cheribuild.py</code> are stored in <code>$HOME/cheri/output</code> and build files in <code>$HOME/cheri/build</code>.</p>
-<h3><a class="header" href="#can-i-build-a-custom-cheribsd-branch-using-cheribuildpy" id="can-i-build-a-custom-cheribsd-branch-using-cheribuildpy">Can I build a custom CheriBSD branch using cheribuild.py?</a></h3>
+<h3 id="can-i-build-a-custom-cheribsd-branch-using-cheribuildpy"><a class="header" href="#can-i-build-a-custom-cheribsd-branch-using-cheribuildpy">Can I build a custom CheriBSD branch using cheribuild.py?</a></h3>
 <p>Yes. <code>cheribuild.py</code> implements several flags to allow you to build multiple CheriBSD branches and store the results separately:</p>
 <ul>
 <li><code>--cheribsd-&lt;target&gt;/source-directory /path/to/your/branch</code> to specify a custom branch's source code directory.</li>
@@ -290,10 +277,11 @@ for your operating system.</p>
 <li><code>--cheribsd-&lt;target&gt;/install-directory /path/to/your/rootfs</code> to specify where root filesystem files should be installed.</li>
 <li><code>--disk-image-&lt;target&gt;/path /path/to/your/image.img</code> to specify where a disk image should be stored.</li>
 </ul>
-<h3><a class="header" href="#can-i-develop-baremetal-applications-for-arm-morello" id="can-i-develop-baremetal-applications-for-arm-morello">Can I develop baremetal applications for Arm Morello?</a></h3>
+<h3 id="can-i-develop-baremetal-applications-for-arm-morello"><a class="header" href="#can-i-develop-baremetal-applications-for-arm-morello">Can I develop baremetal applications for Arm Morello?</a></h3>
 <p>See this <a href="https://git.morello-project.org/morello/docs/-/blob/morello/mainline/common/standalone-baremetal-readme.rst">example</a> application.</p>
-<h2><a class="header" href="#operating-systems" id="operating-systems">Operating systems</a></h2>
-<h3><a class="header" href="#what-operating-systems-are-being-developed-for-cheri" id="what-operating-systems-are-being-developed-for-cheri">What operating systems are being developed for CHERI?</a></h3>
+<h2 id="operating-systems"><a class="header" href="#operating-systems">Operating systems</a></h2>
+<!-- toc -->
+<h3 id="what-operating-systems-are-being-developed-for-cheri"><a class="header" href="#what-operating-systems-are-being-developed-for-cheri">What operating systems are being developed for CHERI?</a></h3>
 <ul>
 <li>
 <p><a href="https://cheribsd.org/">CheriBSD</a> for
@@ -321,7 +309,7 @@ You can talk to them in the <code>#sel4</code> channel at the
 Slack.</p>
 </li>
 </ul>
-<h3><a class="header" href="#which-operating-system-should-i-use-to-experiment-with-cheri" id="which-operating-system-should-i-use-to-experiment-with-cheri">Which operating system should I use to experiment with CHERI?</a></h3>
+<h3 id="which-operating-system-should-i-use-to-experiment-with-cheri"><a class="header" href="#which-operating-system-should-i-use-to-experiment-with-cheri">Which operating system should I use to experiment with CHERI?</a></h3>
 <p>Check the
 <a href="https://www.morello-project.org/cheri-feature-matrix/">CHERI OS-feature matrix</a>
 to compare CheriBSD and Morello Linux.</p>
@@ -333,7 +321,7 @@ It also provides a large number of pre-compiled third-party software
 dependencies that you can simply install with package managers for your project.
 If you intend to work with code that runs on UNIX-like operating systems, we
 recommend you to start with CheriBSD.</p>
-<h3><a class="header" href="#how-do-i-get-started-with-cheribsd-on-morello" id="how-do-i-get-started-with-cheribsd-on-morello">How do I get started with CheriBSD on Morello?</a></h3>
+<h3 id="how-do-i-get-started-with-cheribsd-on-morello"><a class="header" href="#how-do-i-get-started-with-cheribsd-on-morello">How do I get started with CheriBSD on Morello?</a></h3>
 <p>Follow the
 <a href="https://ctsrd-cheri.github.io/cheribsd-getting-started/">Getting Started with CheriBSD guide</a>
 and do not skip any section.</p>
@@ -341,8 +329,9 @@ and do not skip any section.</p>
 before trying to use CheriBSD.
 Of critical importance, you should upgrade your Morello board firmware before
 installing CheriBSD.</p>
-<h2><a class="header" href="#software-porting" id="software-porting">Software porting</a></h2>
-<h3><a class="header" href="#what-programming-languages-can-i-use-on-cheri" id="what-programming-languages-can-i-use-on-cheri">What programming languages can I use on CHERI?</a></h3>
+<h2 id="software-porting"><a class="header" href="#software-porting">Software porting</a></h2>
+<!-- toc -->
+<h3 id="what-programming-languages-can-i-use-on-cheri"><a class="header" href="#what-programming-languages-can-i-use-on-cheri">What programming languages can I use on CHERI?</a></h3>
 <ul>
 <li>
 <p>CHERI C/C++</p>
@@ -363,12 +352,12 @@ at the University of Kent to add support for CHERI in Rust.</p>
 <p>There are no interpreters that support CHERI for these programming languages.</p>
 </li>
 </ul>
-<h3><a class="header" href="#can-i-use-python-with-cheri" id="can-i-use-python-with-cheri">Can I use Python with CHERI?</a></h3>
+<h3 id="can-i-use-python-with-cheri"><a class="header" href="#can-i-use-python-with-cheri">Can I use Python with CHERI?</a></h3>
 <p>There is no Python interpreter that would run your Python code using
 capability-aware instructions.</p>
 <p>You can use a Python interpreter compiled for a baseline architecture but it
 does not give you any of the security benefits of a CHERI-enabled CPU.</p>
-<h3><a class="header" href="#is-my-software-safer-just-by-running-it-on-a-cheri-extended-cpu" id="is-my-software-safer-just-by-running-it-on-a-cheri-extended-cpu">Is my software safer just by running it on a CHERI-extended CPU?</a></h3>
+<h3 id="is-my-software-safer-just-by-running-it-on-a-cheri-extended-cpu"><a class="header" href="#is-my-software-safer-just-by-running-it-on-a-cheri-extended-cpu">Is my software safer just by running it on a CHERI-extended CPU?</a></h3>
 <p>No. While an operating system (i.e., a kernel, basic programs and libraries
 shipped with the OS) might be compiled for the pure-capability ABI and hence
 prevent memory-safety bugs in its components, code compiled for a baseline
@@ -378,7 +367,7 @@ benefit from security features of CHERI.</p>
 either by compiling it for the pure-capability ABI or the hybrid ABI with
 appropriate data type qualifiers that indicate the intention of using CHERI
 capabilities in place of legacy C pointers (in case of C/C++).</p>
-<h3><a class="header" href="#what-are-the-pure-capability-and-hybrid-abis" id="what-are-the-pure-capability-and-hybrid-abis">What are the pure-capability and hybrid ABIs?</a></h3>
+<h3 id="what-are-the-pure-capability-and-hybrid-abis"><a class="header" href="#what-are-the-pure-capability-and-hybrid-abis">What are the pure-capability and hybrid ABIs?</a></h3>
 <p>The pure-capability ABI (also known as CheriABI in CheriBSD and PCuABI in Linux
 and Android) is a new process ABI that uses only CHERI capabilities to access
 memory and interact with a kernel.</p>
@@ -396,7 +385,7 @@ replacing user-space programs and libraries.</p>
 paper and the
 <a href="https://git.morello-project.org/morello/kernel/linux/-/wikis/Morello-pure-capability-kernel-user-Linux-ABI-specification">PCuABI</a>
 specification for more information on the ABIs.</p>
-<h3><a class="header" href="#should-i-compile-my-code-for-the-pure-capability-or-hybrid-abi" id="should-i-compile-my-code-for-the-pure-capability-or-hybrid-abi">Should I compile my code for the pure-capability or hybrid ABI?</a></h3>
+<h3 id="should-i-compile-my-code-for-the-pure-capability-or-hybrid-abi"><a class="header" href="#should-i-compile-my-code-for-the-pure-capability-or-hybrid-abi">Should I compile my code for the pure-capability or hybrid ABI?</a></h3>
 <p>In most cases, porting software to the pure-capability ABI is straightforward
 and does not heavily disrupt code.
 For example, the Capabilities Limited company shows in their report
@@ -421,7 +410,7 @@ dependencies), you might want to compartmentalize parts of your code base now
 vulnerabilities with significant impacts, rather than spend a lot of time
 trying to port the whole project for the pure-capability ABI and then
 compartmentalize it.</p>
-<h3><a class="header" href="#how-easy-it-is-to-compile-cc-code-for-the-pure-capability-abi" id="how-easy-it-is-to-compile-cc-code-for-the-pure-capability-abi">How easy it is to compile C/C++ code for the pure-capability ABI?</a></h3>
+<h3 id="how-easy-it-is-to-compile-cc-code-for-the-pure-capability-abi"><a class="header" href="#how-easy-it-is-to-compile-cc-code-for-the-pure-capability-abi">How easy it is to compile C/C++ code for the pure-capability ABI?</a></h3>
 <p>The LLVM-CHERI assists a developer in C/C++ code porting to CHERI C/C++ by
 printing appropriate warnings whenever it encounters incompatibilities between
 C/C++ and CHERI C/C++ semantics.
@@ -440,10 +429,10 @@ for example compiler warnings and solutions to them,
 and the
 <a href="https://ctsrd-cheri.github.io/cheribsd-getting-started/helloworld/index.html">Getting Started with CheriBSD guide</a>
 for an example CheriABI &quot;Hello World&quot; – how to compile and debug it.</p>
-<h3><a class="header" href="#can-i-link-cheri-cc-code-compiled-for-the-pure-capability-abi-and-the-hybrid-abi" id="can-i-link-cheri-cc-code-compiled-for-the-pure-capability-abi-and-the-hybrid-abi">Can I link CHERI C/C++ code compiled for the pure-capability ABI and the hybrid ABI?</a></h3>
+<h3 id="can-i-link-cheri-cc-code-compiled-for-the-pure-capability-abi-and-the-hybrid-abi"><a class="header" href="#can-i-link-cheri-cc-code-compiled-for-the-pure-capability-abi-and-the-hybrid-abi">Can I link CHERI C/C++ code compiled for the pure-capability ABI and the hybrid ABI?</a></h3>
 <p>No. LLVM-CHERI does not allow to link a program for one ABI with libraries
 compiled for another ABI.</p>
-<h3><a class="header" href="#what-software-has-been-ported-to-cheri" id="what-software-has-been-ported-to-cheri">What software has been ported to CHERI?</a></h3>
+<h3 id="what-software-has-been-ported-to-cheri"><a class="header" href="#what-software-has-been-ported-to-cheri">What software has been ported to CHERI?</a></h3>
 <p>For CheriBSD, there are ~9,000 pre-compiled CheriABI packages, including
 KDE Plasma 5, Git, Rsync, sudo, Bash, tmux.
 Besides that, there are ~24,000 hybrid ABI packages, including LLVM-CHERI,
@@ -464,7 +453,7 @@ guide for more information on third-party software packages,
 and the
 <a href="https://freebsdfoundation.org/wp-content/uploads/2023/05/CheriBSD_ports.pdf">CheriBSD Ports and Packages</a>
 article to read more on the package building process.</p>
-<h3><a class="header" href="#how-can-i-print-a-cheri-capability-in-cheri-cc" id="how-can-i-print-a-cheri-capability-in-cheri-cc">How can I print a CHERI capability in CHERI C/C++?</a></h3>
+<h3 id="how-can-i-print-a-cheri-capability-in-cheri-cc"><a class="header" href="#how-can-i-print-a-cheri-capability-in-cheri-cc">How can I print a CHERI capability in CHERI C/C++?</a></h3>
 <p>See the
 <a href="https://github.com/CTSRD-CHERI/cheri-c-programming/wiki/Displaying-Capabilities">Displaying Capabilities</a>
 wiki page for
@@ -473,12 +462,13 @@ string formats.</p>
 <p>You can also store a formatted string with properties of a CHERI capability
 using
 <a href="https://man.cheribsd.org/cgi-bin/man.cgi/dev/strfcap.3">strfcap(3)</a>.</p>
-<h3><a class="header" href="#how-can-i-display-a-cheri-capability-in-gdb-cheri" id="how-can-i-display-a-cheri-capability-in-gdb-cheri">How can I display a CHERI capability in GDB-CHERI?</a></h3>
+<h3 id="how-can-i-display-a-cheri-capability-in-gdb-cheri"><a class="header" href="#how-can-i-display-a-cheri-capability-in-gdb-cheri">How can I display a CHERI capability in GDB-CHERI?</a></h3>
 <p>See the
 <a href="https://github.com/CTSRD-CHERI/cheri-c-programming/wiki/Displaying-Capabilities">Displaying Capabilities</a>
 wiki page for <code>print</code> command output formats.</p>
-<h2><a class="header" href="#compartmentalization" id="compartmentalization">Compartmentalization</a></h2>
-<h3><a class="header" href="#what-compartmentalization-models-are-available-for-cheri" id="what-compartmentalization-models-are-available-for-cheri">What compartmentalization models are available for CHERI?</a></h3>
+<h2 id="compartmentalization"><a class="header" href="#compartmentalization">Compartmentalization</a></h2>
+<!-- toc -->
+<h3 id="what-compartmentalization-models-are-available-for-cheri"><a class="header" href="#what-compartmentalization-models-are-available-for-cheri">What compartmentalization models are available for CHERI?</a></h3>
 <ul>
 <li>
 <p><a href="https://man.cheribsd.org/cgi-bin/man.cgi/c18n.7">Library-based compartmentalization</a>
@@ -493,8 +483,9 @@ in CheriBSD</p>
 <p>There are plans to make this model available for Morello as well.</p>
 </li>
 </ul>
-<h2><a class="header" href="#cheribsd" id="cheribsd">CheriBSD</a></h2>
-<h3><a class="header" href="#how-can-i-upgrade-cheribsd" id="how-can-i-upgrade-cheribsd">How can I upgrade CheriBSD?</a></h3>
+<h2 id="cheribsd"><a class="header" href="#cheribsd">CheriBSD</a></h2>
+<!-- toc -->
+<h3 id="how-can-i-upgrade-cheribsd"><a class="header" href="#how-can-i-upgrade-cheribsd">How can I upgrade CheriBSD?</a></h3>
 <p>Currently, there are no binary upgrades for CheriBSD.</p>
 <p>The only way to upgrade a CheriBSD host is to build and install CheriBSD from
 source code.
@@ -503,7 +494,7 @@ See the
 for instructions how to do this.
 Note that we cannot guarantee stability when upgrading CheriBSD and it is
 important to make sure you can recover your data if an upgrade fails.</p>
-<h3><a class="header" href="#how-can-i-build-cheribsd-from-source-code" id="how-can-i-build-cheribsd-from-source-code">How can I build CheriBSD from source code?</a></h3>
+<h3 id="how-can-i-build-cheribsd-from-source-code"><a class="header" href="#how-can-i-build-cheribsd-from-source-code">How can I build CheriBSD from source code?</a></h3>
 <p>You have two choices:</p>
 <ul>
 <li>
@@ -515,15 +506,15 @@ important to make sure you can recover your data if an upgrade fails.</p>
 <a href="https://github.com/CTSRD-CHERI/cheribuild">cheribuild</a></p>
 </li>
 </ul>
-<h3><a class="header" href="#does-cheribsd-implement-spatial-safety-eg-to-prevent-out-of-bounds-bugs" id="does-cheribsd-implement-spatial-safety-eg-to-prevent-out-of-bounds-bugs">Does CheriBSD implement spatial safety (e.g., to prevent out-of-bounds bugs)?</a></h3>
+<h3 id="does-cheribsd-implement-spatial-safety-eg-to-prevent-out-of-bounds-bugs"><a class="header" href="#does-cheribsd-implement-spatial-safety-eg-to-prevent-out-of-bounds-bugs">Does CheriBSD implement spatial safety (e.g., to prevent out-of-bounds bugs)?</a></h3>
 <p>The official CheriBSD release runs basic programs and libraries compiled
 for the pure-capability ABI and a hybrid kernel.</p>
 <p>It also includes a pure-capability kernel in
 <code>/boot/kernel.GENERIC-MORELLO-PURECAP</code>.
 See
-<a href="/#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel">these instructions</a>
+<a href="../questions/cheribsd.html#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel">these instructions</a>
 to find out how to do that.</p>
-<h3><a class="header" href="#does-cheribsd-implement-temporal-safety-eg-to-prevent-use-after-free-bugs" id="does-cheribsd-implement-temporal-safety-eg-to-prevent-use-after-free-bugs">Does CheriBSD implement temporal safety (e.g., to prevent use-after-free bugs)?</a></h3>
+<h3 id="does-cheribsd-implement-temporal-safety-eg-to-prevent-use-after-free-bugs"><a class="header" href="#does-cheribsd-implement-temporal-safety-eg-to-prevent-use-after-free-bugs">Does CheriBSD implement temporal safety (e.g., to prevent use-after-free bugs)?</a></h3>
 <p>Currently, the official CheriBSD release does not include temporal safety
 mechanisms.
 This feature (also known as Cornucopia in CheriBSD) is scheduled for a future
@@ -535,7 +526,7 @@ to read more how to use it.</p>
 <!--
 NOTE: When changing this title, remember to update references in this document.
 -->
-<h3><a class="header" href="#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel" id="how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel">How can I switch to another CheriBSD kernel (e.g., a pure-capability kernel)?</a></h3>
+<h3 id="how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel"><a class="header" href="#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel">How can I switch to another CheriBSD kernel (e.g., a pure-capability kernel)?</a></h3>
 <p>Use one of the following methods:</p>
 <ul>
 <li>
@@ -556,10 +547,11 @@ more details.</p>
 (e.g., <code>kernel.GENERIC-MORELLO-PURECAP</code>) that corresponds to a kernel
 configuration file from CheriBSD source code (e.g.,
 <a href="https://github.com/CTSRD-CHERI/cheribsd/blob/main/sys/arm64/conf/GENERIC-MORELLO-PURECAP">GENERIC-MORELLO-PURECAP</a>).</p>
-<h3><a class="header" href="#is-there-any-ide-for-cheribsd" id="is-there-any-ide-for-cheribsd">Is there any IDE for CheriBSD?</a></h3>
+<h3 id="is-there-any-ide-for-cheribsd"><a class="header" href="#is-there-any-ide-for-cheribsd">Is there any IDE for CheriBSD?</a></h3>
 <p>No. The closest to it is Kate Editor but it is still far from an actual IDE.</p>
-<h2><a class="header" href="#community" id="community">Community</a></h2>
-<h3><a class="header" href="#where-should-i-ask-questions-related-to-cheri" id="where-should-i-ask-questions-related-to-cheri">Where should I ask questions related to CHERI?</a></h3>
+<h2 id="community"><a class="header" href="#community">Community</a></h2>
+<!-- toc -->
+<h3 id="where-should-i-ask-questions-related-to-cheri"><a class="header" href="#where-should-i-ask-questions-related-to-cheri">Where should I ask questions related to CHERI?</a></h3>
 <p>Join the
 <a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/cheri-slack.html">CHERI-CPU</a>
 Slack workspace or the
@@ -568,7 +560,7 @@ mailing list and ask questions there.</p>
 <p>Alternatively, if your question is related to Linux or Android for Arm Morello,
 you can join the
 <a href="https://community.arm.com/support-forums/f/morello-forum">Morello Forum</a>.</p>
-<h3><a class="header" href="#where-can-i-report-issues-related-to-cheri" id="where-can-i-report-issues-related-to-cheri">Where can I report issues related to CHERI?</a></h3>
+<h3 id="where-can-i-report-issues-related-to-cheri"><a class="header" href="#where-can-i-report-issues-related-to-cheri">Where can I report issues related to CHERI?</a></h3>
 <p>If you are not sure what is a cause of your issue, you can contact us first,
 as described above.</p>
 <ul>
@@ -596,7 +588,7 @@ here.</p>
 <p><a href="https://github.com/CTSRD-CHERI/qemu/issues">QEMU-CHERI</a></p>
 </li>
 </ul>
-<h3><a class="header" href="#how-can-i-contribute-to-this-document" id="how-can-i-contribute-to-this-document">How can I contribute to this document?</a></h3>
+<h3 id="how-can-i-contribute-to-this-document"><a class="header" href="#how-can-i-contribute-to-this-document">How can I contribute to this document?</a></h3>
 <p>We encourage anyone interested in improving this document to make contributions
 to it. In order to add a new question:</p>
 <ol>
@@ -614,9 +606,10 @@ repository with your change.</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
 
-                        
+                            <a rel="next" href="questions/general.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -624,41 +617,33 @@ repository with your change.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
 
-                
+                    <a rel="next" href="questions/general.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
 
-        
 
-        
 
-        
 
-        
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
-        
 
-        
 
-        
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
-        
 
-        
 
+    </div>
     </body>
 </html>
