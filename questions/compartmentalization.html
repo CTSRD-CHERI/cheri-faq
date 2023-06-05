@@ -70,12 +70,10 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = null;
+            var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -148,7 +146,9 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="compartmentalization"><a class="header" href="#compartmentalization">Compartmentalization</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="#what-compartmentalization-models-are-available-for-cheri">What compartmentalization models are available for CHERI?</a></li>
+</ul>
 <h3 id="what-compartmentalization-models-are-available-for-cheri"><a class="header" href="#what-compartmentalization-models-are-available-for-cheri">What compartmentalization models are available for CHERI?</a></h3>
 <ul>
 <li>

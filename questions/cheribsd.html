@@ -70,12 +70,10 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = null;
+            var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -148,7 +146,14 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="cheribsd"><a class="header" href="#cheribsd">CheriBSD</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="#how-can-i-upgrade-cheribsd">How can I upgrade CheriBSD?</a></li>
+<li><a href="#how-can-i-build-cheribsd-from-source-code">How can I build CheriBSD from source code?</a></li>
+<li><a href="#does-cheribsd-implement-spatial-safety-eg-to-prevent-out-of-bounds-bugs">Does CheriBSD implement spatial safety (e.g., to prevent out-of-bounds bugs)?</a></li>
+<li><a href="#does-cheribsd-implement-temporal-safety-eg-to-prevent-use-after-free-bugs">Does CheriBSD implement temporal safety (e.g., to prevent use-after-free bugs)?</a></li>
+<li><a href="#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel">How can I switch to another CheriBSD kernel (e.g., a pure-capability kernel)?</a></li>
+<li><a href="#is-there-any-ide-for-cheribsd">Is there any IDE for CheriBSD?</a></li>
+</ul>
 <h3 id="how-can-i-upgrade-cheribsd"><a class="header" href="#how-can-i-upgrade-cheribsd">How can I upgrade CheriBSD?</a></h3>
 <p>Currently, there are no binary upgrades for CheriBSD.</p>
 <p>The only way to upgrade a CheriBSD host is to build and install CheriBSD from

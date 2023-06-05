@@ -71,12 +71,10 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = null;
+            var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -158,7 +156,64 @@ hardware-software stacks, including Arm Morello and CHERI-RISC-V.</p>
 Technology Access Programme (DSbD TAP), Defence and Security Accelerator (DASA))
 might find this document useful when exploring their project prototype ideas.</p>
 <h2 id="contents"><a class="header" href="#contents">Contents</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="cover/index.html#general">General</a>
+<ul>
+<li><a href="cover/index.html#what-is-cheri">What is CHERI?</a></li>
+<li><a href="cover/index.html#what-types-of-threat-has-cheri-been-designed-to-prevent">What types of threat has CHERI been designed to prevent?</a></li>
+<li><a href="cover/index.html#what-cheri-extended-hardware-is-available-to-use">What CHERI-extended hardware is available to use?</a></li>
+<li><a href="cover/index.html#how-can-i-get-an-arm-morello-board">How can I get an Arm Morello board?</a></li>
+<li><a href="cover/index.html#how-can-i-emulate-a-cheri-enabled-environment">How can I emulate a CHERI-enabled environment?</a></li>
+<li><a href="cover/index.html#how-can-i-build-and-emulate-a-cheri-enabled-environment">How can I build and emulate a CHERI-enabled environment?</a></li>
+<li><a href="cover/index.html#where-are-cheribuildpy-images-and-build-files-stored">Where are cheribuild.py images and build files stored?</a></li>
+<li><a href="cover/index.html#can-i-build-a-custom-cheribsd-branch-using-cheribuildpy">Can I build a custom CheriBSD branch using cheribuild.py?</a></li>
+<li><a href="cover/index.html#can-i-develop-baremetal-applications-for-arm-morello">Can I develop baremetal applications for Arm Morello?</a></li>
+</ul>
+</li>
+<li><a href="cover/index.html#operating-systems">Operating systems</a>
+<ul>
+<li><a href="cover/index.html#what-operating-systems-are-being-developed-for-cheri">What operating systems are being developed for CHERI?</a></li>
+<li><a href="cover/index.html#which-operating-system-should-i-use-to-experiment-with-cheri">Which operating system should I use to experiment with CHERI?</a></li>
+<li><a href="cover/index.html#how-do-i-get-started-with-cheribsd-on-morello">How do I get started with CheriBSD on Morello?</a></li>
+</ul>
+</li>
+<li><a href="cover/index.html#software-porting">Software porting</a>
+<ul>
+<li><a href="cover/index.html#what-programming-languages-can-i-use-on-cheri">What programming languages can I use on CHERI?</a></li>
+<li><a href="cover/index.html#can-i-use-python-with-cheri">Can I use Python with CHERI?</a></li>
+<li><a href="cover/index.html#is-my-software-safer-just-by-running-it-on-a-cheri-extended-cpu">Is my software safer just by running it on a CHERI-extended CPU?</a></li>
+<li><a href="cover/index.html#what-are-the-pure-capability-and-hybrid-abis">What are the pure-capability and hybrid ABIs?</a></li>
+<li><a href="cover/index.html#should-i-compile-my-code-for-the-pure-capability-or-hybrid-abi">Should I compile my code for the pure-capability or hybrid ABI?</a></li>
+<li><a href="cover/index.html#how-easy-it-is-to-compile-cc-code-for-the-pure-capability-abi">How easy it is to compile C/C++ code for the pure-capability ABI?</a></li>
+<li><a href="cover/index.html#can-i-link-cheri-cc-code-compiled-for-the-pure-capability-abi-and-the-hybrid-abi">Can I link CHERI C/C++ code compiled for the pure-capability ABI and the hybrid ABI?</a></li>
+<li><a href="cover/index.html#what-software-has-been-ported-to-cheri">What software has been ported to CHERI?</a></li>
+<li><a href="cover/index.html#how-can-i-print-a-cheri-capability-in-cheri-cc">How can I print a CHERI capability in CHERI C/C++?</a></li>
+<li><a href="cover/index.html#how-can-i-display-a-cheri-capability-in-gdb-cheri">How can I display a CHERI capability in GDB-CHERI?</a></li>
+</ul>
+</li>
+<li><a href="cover/index.html#compartmentalization">Compartmentalization</a>
+<ul>
+<li><a href="cover/index.html#what-compartmentalization-models-are-available-for-cheri">What compartmentalization models are available for CHERI?</a></li>
+</ul>
+</li>
+<li><a href="cover/index.html#cheribsd">CheriBSD</a>
+<ul>
+<li><a href="cover/index.html#how-can-i-upgrade-cheribsd">How can I upgrade CheriBSD?</a></li>
+<li><a href="cover/index.html#how-can-i-build-cheribsd-from-source-code">How can I build CheriBSD from source code?</a></li>
+<li><a href="cover/index.html#does-cheribsd-implement-spatial-safety-eg-to-prevent-out-of-bounds-bugs">Does CheriBSD implement spatial safety (e.g., to prevent out-of-bounds bugs)?</a></li>
+<li><a href="cover/index.html#does-cheribsd-implement-temporal-safety-eg-to-prevent-use-after-free-bugs">Does CheriBSD implement temporal safety (e.g., to prevent use-after-free bugs)?</a></li>
+<li><a href="cover/index.html#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel">How can I switch to another CheriBSD kernel (e.g., a pure-capability kernel)?</a></li>
+<li><a href="cover/index.html#is-there-any-ide-for-cheribsd">Is there any IDE for CheriBSD?</a></li>
+</ul>
+</li>
+<li><a href="cover/index.html#community">Community</a>
+<ul>
+<li><a href="cover/index.html#where-should-i-ask-questions-related-to-cheri">Where should I ask questions related to CHERI?</a></li>
+<li><a href="cover/index.html#where-can-i-report-issues-related-to-cheri">Where can I report issues related to CHERI?</a></li>
+<li><a href="cover/index.html#how-can-i-contribute-to-this-document">How can I contribute to this document?</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="general"><a class="header" href="#general">General</a></h2>
 <!-- toc -->
 <h3 id="what-is-cheri"><a class="header" href="#what-is-cheri">What is CHERI?</a></h3>
@@ -603,7 +658,17 @@ repository with your change.</p>
 </li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="general-1"><a class="header" href="#general-1">General</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="questions/general.html#what-is-cheri">What is CHERI?</a></li>
+<li><a href="questions/general.html#what-types-of-threat-has-cheri-been-designed-to-prevent">What types of threat has CHERI been designed to prevent?</a></li>
+<li><a href="questions/general.html#what-cheri-extended-hardware-is-available-to-use">What CHERI-extended hardware is available to use?</a></li>
+<li><a href="questions/general.html#how-can-i-get-an-arm-morello-board">How can I get an Arm Morello board?</a></li>
+<li><a href="questions/general.html#how-can-i-emulate-a-cheri-enabled-environment">How can I emulate a CHERI-enabled environment?</a></li>
+<li><a href="questions/general.html#how-can-i-build-and-emulate-a-cheri-enabled-environment">How can I build and emulate a CHERI-enabled environment?</a></li>
+<li><a href="questions/general.html#where-are-cheribuildpy-images-and-build-files-stored">Where are cheribuild.py images and build files stored?</a></li>
+<li><a href="questions/general.html#can-i-build-a-custom-cheribsd-branch-using-cheribuildpy">Can I build a custom CheriBSD branch using cheribuild.py?</a></li>
+<li><a href="questions/general.html#can-i-develop-baremetal-applications-for-arm-morello">Can I develop baremetal applications for Arm Morello?</a></li>
+</ul>
 <h3 id="what-is-cheri-1"><a class="header" href="#what-is-cheri-1">What is CHERI?</a></h3>
 <p><a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">CHERI</a> (Capability Hardware Enhanced RISC Instructions) is a joint research project by SRI International and the University of Cambridge to revisit fundamental design choices in hardware and software to dramatically improve system security. <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">An Introduction to CHERI</a> provides a high-level introduction to CHERI.</p>
 <h3 id="what-types-of-threat-has-cheri-been-designed-to-prevent-1"><a class="header" href="#what-types-of-threat-has-cheri-been-designed-to-prevent-1">What types of threat has CHERI been designed to prevent?</a></h3>
@@ -724,7 +789,11 @@ for your operating system.</p>
 <h3 id="can-i-develop-baremetal-applications-for-arm-morello-1"><a class="header" href="#can-i-develop-baremetal-applications-for-arm-morello-1">Can I develop baremetal applications for Arm Morello?</a></h3>
 <p>See this <a href="https://git.morello-project.org/morello/docs/-/blob/morello/mainline/common/standalone-baremetal-readme.rst">example</a> application.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="operating-systems-1"><a class="header" href="#operating-systems-1">Operating systems</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="questions/operating-systems.html#what-operating-systems-are-being-developed-for-cheri">What operating systems are being developed for CHERI?</a></li>
+<li><a href="questions/operating-systems.html#which-operating-system-should-i-use-to-experiment-with-cheri">Which operating system should I use to experiment with CHERI?</a></li>
+<li><a href="questions/operating-systems.html#how-do-i-get-started-with-cheribsd-on-morello">How do I get started with CheriBSD on Morello?</a></li>
+</ul>
 <h3 id="what-operating-systems-are-being-developed-for-cheri-1"><a class="header" href="#what-operating-systems-are-being-developed-for-cheri-1">What operating systems are being developed for CHERI?</a></h3>
 <ul>
 <li>
@@ -774,7 +843,18 @@ before trying to use CheriBSD.
 Of critical importance, you should upgrade your Morello board firmware before
 installing CheriBSD.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="software-porting-1"><a class="header" href="#software-porting-1">Software porting</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="questions/software-porting.html#what-programming-languages-can-i-use-on-cheri">What programming languages can I use on CHERI?</a></li>
+<li><a href="questions/software-porting.html#can-i-use-python-with-cheri">Can I use Python with CHERI?</a></li>
+<li><a href="questions/software-porting.html#is-my-software-safer-just-by-running-it-on-a-cheri-extended-cpu">Is my software safer just by running it on a CHERI-extended CPU?</a></li>
+<li><a href="questions/software-porting.html#what-are-the-pure-capability-and-hybrid-abis">What are the pure-capability and hybrid ABIs?</a></li>
+<li><a href="questions/software-porting.html#should-i-compile-my-code-for-the-pure-capability-or-hybrid-abi">Should I compile my code for the pure-capability or hybrid ABI?</a></li>
+<li><a href="questions/software-porting.html#how-easy-it-is-to-compile-cc-code-for-the-pure-capability-abi">How easy it is to compile C/C++ code for the pure-capability ABI?</a></li>
+<li><a href="questions/software-porting.html#can-i-link-cheri-cc-code-compiled-for-the-pure-capability-abi-and-the-hybrid-abi">Can I link CHERI C/C++ code compiled for the pure-capability ABI and the hybrid ABI?</a></li>
+<li><a href="questions/software-porting.html#what-software-has-been-ported-to-cheri">What software has been ported to CHERI?</a></li>
+<li><a href="questions/software-porting.html#how-can-i-print-a-cheri-capability-in-cheri-cc">How can I print a CHERI capability in CHERI C/C++?</a></li>
+<li><a href="questions/software-porting.html#how-can-i-display-a-cheri-capability-in-gdb-cheri">How can I display a CHERI capability in GDB-CHERI?</a></li>
+</ul>
 <h3 id="what-programming-languages-can-i-use-on-cheri-1"><a class="header" href="#what-programming-languages-can-i-use-on-cheri-1">What programming languages can I use on CHERI?</a></h3>
 <ul>
 <li>
@@ -911,7 +991,9 @@ using
 <a href="https://github.com/CTSRD-CHERI/cheri-c-programming/wiki/Displaying-Capabilities">Displaying Capabilities</a>
 wiki page for <code>print</code> command output formats.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="compartmentalization-1"><a class="header" href="#compartmentalization-1">Compartmentalization</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="questions/compartmentalization.html#what-compartmentalization-models-are-available-for-cheri">What compartmentalization models are available for CHERI?</a></li>
+</ul>
 <h3 id="what-compartmentalization-models-are-available-for-cheri-1"><a class="header" href="#what-compartmentalization-models-are-available-for-cheri-1">What compartmentalization models are available for CHERI?</a></h3>
 <ul>
 <li>
@@ -928,7 +1010,14 @@ in CheriBSD</p>
 </li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="cheribsd-1"><a class="header" href="#cheribsd-1">CheriBSD</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="questions/cheribsd.html#how-can-i-upgrade-cheribsd">How can I upgrade CheriBSD?</a></li>
+<li><a href="questions/cheribsd.html#how-can-i-build-cheribsd-from-source-code">How can I build CheriBSD from source code?</a></li>
+<li><a href="questions/cheribsd.html#does-cheribsd-implement-spatial-safety-eg-to-prevent-out-of-bounds-bugs">Does CheriBSD implement spatial safety (e.g., to prevent out-of-bounds bugs)?</a></li>
+<li><a href="questions/cheribsd.html#does-cheribsd-implement-temporal-safety-eg-to-prevent-use-after-free-bugs">Does CheriBSD implement temporal safety (e.g., to prevent use-after-free bugs)?</a></li>
+<li><a href="questions/cheribsd.html#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel">How can I switch to another CheriBSD kernel (e.g., a pure-capability kernel)?</a></li>
+<li><a href="questions/cheribsd.html#is-there-any-ide-for-cheribsd">Is there any IDE for CheriBSD?</a></li>
+</ul>
 <h3 id="how-can-i-upgrade-cheribsd-1"><a class="header" href="#how-can-i-upgrade-cheribsd-1">How can I upgrade CheriBSD?</a></h3>
 <p>Currently, there are no binary upgrades for CheriBSD.</p>
 <p>The only way to upgrade a CheriBSD host is to build and install CheriBSD from
@@ -994,7 +1083,11 @@ configuration file from CheriBSD source code (e.g.,
 <h3 id="is-there-any-ide-for-cheribsd-1"><a class="header" href="#is-there-any-ide-for-cheribsd-1">Is there any IDE for CheriBSD?</a></h3>
 <p>No. The closest to it is Kate Editor but it is still far from an actual IDE.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="community-1"><a class="header" href="#community-1">Community</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="questions/community.html#where-should-i-ask-questions-related-to-cheri">Where should I ask questions related to CHERI?</a></li>
+<li><a href="questions/community.html#where-can-i-report-issues-related-to-cheri">Where can I report issues related to CHERI?</a></li>
+<li><a href="questions/community.html#how-can-i-contribute-to-this-document">How can I contribute to this document?</a></li>
+</ul>
 <h3 id="where-should-i-ask-questions-related-to-cheri-1"><a class="header" href="#where-should-i-ask-questions-related-to-cheri-1">Where should I ask questions related to CHERI?</a></h3>
 <p>Join the
 <a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/cheri-slack.html">CHERI-CPU</a>

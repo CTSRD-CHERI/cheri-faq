@@ -70,12 +70,10 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = null;
+            var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -148,7 +146,18 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="software-porting"><a class="header" href="#software-porting">Software porting</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="#what-programming-languages-can-i-use-on-cheri">What programming languages can I use on CHERI?</a></li>
+<li><a href="#can-i-use-python-with-cheri">Can I use Python with CHERI?</a></li>
+<li><a href="#is-my-software-safer-just-by-running-it-on-a-cheri-extended-cpu">Is my software safer just by running it on a CHERI-extended CPU?</a></li>
+<li><a href="#what-are-the-pure-capability-and-hybrid-abis">What are the pure-capability and hybrid ABIs?</a></li>
+<li><a href="#should-i-compile-my-code-for-the-pure-capability-or-hybrid-abi">Should I compile my code for the pure-capability or hybrid ABI?</a></li>
+<li><a href="#how-easy-it-is-to-compile-cc-code-for-the-pure-capability-abi">How easy it is to compile C/C++ code for the pure-capability ABI?</a></li>
+<li><a href="#can-i-link-cheri-cc-code-compiled-for-the-pure-capability-abi-and-the-hybrid-abi">Can I link CHERI C/C++ code compiled for the pure-capability ABI and the hybrid ABI?</a></li>
+<li><a href="#what-software-has-been-ported-to-cheri">What software has been ported to CHERI?</a></li>
+<li><a href="#how-can-i-print-a-cheri-capability-in-cheri-cc">How can I print a CHERI capability in CHERI C/C++?</a></li>
+<li><a href="#how-can-i-display-a-cheri-capability-in-gdb-cheri">How can I display a CHERI capability in GDB-CHERI?</a></li>
+</ul>
 <h3 id="what-programming-languages-can-i-use-on-cheri"><a class="header" href="#what-programming-languages-can-i-use-on-cheri">What programming languages can I use on CHERI?</a></h3>
 <ul>
 <li>

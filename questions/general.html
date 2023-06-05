@@ -70,12 +70,10 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = null;
+            var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -148,7 +146,17 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="general"><a class="header" href="#general">General</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="#what-is-cheri">What is CHERI?</a></li>
+<li><a href="#what-types-of-threat-has-cheri-been-designed-to-prevent">What types of threat has CHERI been designed to prevent?</a></li>
+<li><a href="#what-cheri-extended-hardware-is-available-to-use">What CHERI-extended hardware is available to use?</a></li>
+<li><a href="#how-can-i-get-an-arm-morello-board">How can I get an Arm Morello board?</a></li>
+<li><a href="#how-can-i-emulate-a-cheri-enabled-environment">How can I emulate a CHERI-enabled environment?</a></li>
+<li><a href="#how-can-i-build-and-emulate-a-cheri-enabled-environment">How can I build and emulate a CHERI-enabled environment?</a></li>
+<li><a href="#where-are-cheribuildpy-images-and-build-files-stored">Where are cheribuild.py images and build files stored?</a></li>
+<li><a href="#can-i-build-a-custom-cheribsd-branch-using-cheribuildpy">Can I build a custom CheriBSD branch using cheribuild.py?</a></li>
+<li><a href="#can-i-develop-baremetal-applications-for-arm-morello">Can I develop baremetal applications for Arm Morello?</a></li>
+</ul>
 <h3 id="what-is-cheri"><a class="header" href="#what-is-cheri">What is CHERI?</a></h3>
 <p><a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">CHERI</a> (Capability Hardware Enhanced RISC Instructions) is a joint research project by SRI International and the University of Cambridge to revisit fundamental design choices in hardware and software to dramatically improve system security. <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">An Introduction to CHERI</a> provides a high-level introduction to CHERI.</p>
 <h3 id="what-types-of-threat-has-cheri-been-designed-to-prevent"><a class="header" href="#what-types-of-threat-has-cheri-been-designed-to-prevent">What types of threat has CHERI been designed to prevent?</a></h3>

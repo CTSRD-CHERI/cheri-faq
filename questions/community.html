@@ -70,12 +70,10 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = null;
+            var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -148,7 +146,11 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="community"><a class="header" href="#community">Community</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="#where-should-i-ask-questions-related-to-cheri">Where should I ask questions related to CHERI?</a></li>
+<li><a href="#where-can-i-report-issues-related-to-cheri">Where can I report issues related to CHERI?</a></li>
+<li><a href="#how-can-i-contribute-to-this-document">How can I contribute to this document?</a></li>
+</ul>
 <h3 id="where-should-i-ask-questions-related-to-cheri"><a class="header" href="#where-should-i-ask-questions-related-to-cheri">Where should I ask questions related to CHERI?</a></h3>
 <p>Join the
 <a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/cheri-slack.html">CHERI-CPU</a>
