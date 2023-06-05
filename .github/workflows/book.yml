@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Install cargo
         uses: actions-rs/toolchain@v1
@@ -19,7 +19,7 @@ jobs:
           profile: minimal
 
       - name: Install mdbook
-        run: curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.30/mdbook-v0.4.30-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=$HOME/.cargo/bin
+        run: curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.27/mdbook-v0.4.27-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=$HOME/.cargo/bin
 
       - name: Install mdbook-toc
         run: curl -sSL https://github.com/badboy/mdbook-toc/releases/download/0.12.0/mdbook-toc-0.12.0-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=$HOME/.cargo/bin
