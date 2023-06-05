@@ -176,8 +176,9 @@ Technology Access Programme (DSbD TAP), Defence and Security Accelerator (DASA))
 might find this document useful when exploring their project prototype ideas.</p>
 <h2><a class="header" href="#general" id="general">General</a></h2>
 <h3><a class="header" href="#what-is-cheri" id="what-is-cheri">What is CHERI?</a></h3>
-<p>See
-<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">An Introduction to CHERI</a>.</p>
+<p><a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">CHERI</a> (Capability Hardware Enhanced RISC Instructions) is a joint research project by SRI International and the University of Cambridge to revisit fundamental design choices in hardware and software to dramatically improve system security. <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">An Introduction to CHERI</a> provides a high-level introduction to CHERI.</p>
+<h3><a class="header" href="#what-types-of-threat-has-cheri-been-designed-to-prevent" id="what-types-of-threat-has-cheri-been-designed-to-prevent">What types of threat has CHERI been designed to prevent?</a></h3>
+<p>CHERI enables fine-grained memory protection (e.g. to prevent out-of-bounds and use-after-free bugs) and highly scalable software compartmentalization (e.g. to mitigate future or unknown vulnerabilities in third-party software).</p>
 <h3><a class="header" href="#what-cheri-extended-hardware-is-available-to-use" id="what-cheri-extended-hardware-is-available-to-use">What CHERI-extended hardware is available to use?</a></h3>
 <p><a href="https://www.arm.com/architecture/cpu/morello">Arm Morello</a>
 is currently the only System-on-Chip with a CHERI-extended CPU.</p>
@@ -281,6 +282,18 @@ for your operating system.</p>
 </ul>
 </li>
 </ol>
+<h3><a class="header" href="#where-are-cheribuildpy-images-and-build-files-stored" id="where-are-cheribuildpy-images-and-build-files-stored">Where are cheribuild.py images and build files stored?</a></h3>
+<p>By default, images built by <code>cheribuild.py</code> are stored in <code>$HOME/cheri/output</code> and build files in <code>$HOME/cheri/build</code>.</p>
+<h3><a class="header" href="#can-i-build-a-custom-cheribsd-branch-using-cheribuildpy" id="can-i-build-a-custom-cheribsd-branch-using-cheribuildpy">Can I build a custom CheriBSD branch using cheribuild.py?</a></h3>
+<p>Yes. <code>cheribuild.py</code> implements several flags to allow you to build multiple CheriBSD branches and store the results separately:</p>
+<ul>
+<li><code>--cheribsd-&lt;target&gt;/source-directory /path/to/your/branch</code> to specify a custom branch's source code directory.</li>
+<li><code>--cheribsd-&lt;target&gt;/build-directory /path/to/your/build</code> to specify where build files should be stored.</li>
+<li><code>--cheribsd-&lt;target&gt;/install-directory /path/to/your/rootfs</code> to specify where root filesystem files should be installed.</li>
+<li><code>--disk-image-&lt;target&gt;/path /path/to/your/image.img</code> to specify where a disk image should be stored.</li>
+</ul>
+<h3><a class="header" href="#can-i-develop-baremetal-applications-for-arm-morello" id="can-i-develop-baremetal-applications-for-arm-morello">Can I develop baremetal applications for Arm Morello?</a></h3>
+<p>See this <a href="https://git.morello-project.org/morello/docs/-/blob/morello/mainline/common/standalone-baremetal-readme.rst">example</a> application.</p>
 <h2><a class="header" href="#operating-systems" id="operating-systems">Operating systems</a></h2>
 <h3><a class="header" href="#what-operating-systems-are-being-developed-for-cheri" id="what-operating-systems-are-being-developed-for-cheri">What operating systems are being developed for CHERI?</a></h3>
 <ul>
@@ -441,6 +454,7 @@ GDB-CHERI, Chromium, Firefox, Vim, Python, Meson, Ninja.</p>
 <code>pkg64 rquery %n</code>.
 Alternatively, you can search for a specific package using
 <code>pkg64c search &lt;pattern&gt;</code> and <code>pkg64 search &lt;pattern&gt;</code>.</p>
+<p>You can browse CheriABI and hybrid ABI package repositories at <a href="https://pkg.cheribsd.org/">pkg.cheribsd.org</a>.</p>
 <p>The packages are built using
 <a href="https://github.com/CTSRD-CHERI/cheribsd-ports">CheriBSD ports</a>,
 a fork of
