@@ -33,7 +33,7 @@ for the pure-capability ABI and a hybrid kernel.
 It also includes a pure-capability kernel in
 `/boot/kernel.GENERIC-MORELLO-PURECAP`.
 See
-[these instructions](../questions/cheribsd.html#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel)
+[these instructions](/cheri-faq/questions/cheribsd.html#how-can-i-switch-to-another-cheribsd-kernel-eg-a-pure-capability-kernel)
 to find out how to do that.
 
 
