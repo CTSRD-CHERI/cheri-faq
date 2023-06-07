@@ -2,7 +2,7 @@
 
 # CHERI Frequently Asked Questions
 
-University of Cambridge, SRI International
+University of Cambridge, SRI International, Digital Catapult
 
 This is a living document with frequently asked questions regarding Capability
 Hardware Enhanced RISC Instructions (CHERI).
