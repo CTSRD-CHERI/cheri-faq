@@ -13,6 +13,15 @@ CHERI-related competition participants (e.g., Digital Security by Design
 Technology Access Programme (DSbD TAP), Defence and Security Accelerator (DASA))
 might find this document useful when exploring their project prototype ideas.
 
+## Contributions
+
+We encourage anyone interested in improving this document to make contributions
+to it, e.g. by adding a new question or extending an answer.
+See
+[How can I contribute to this document?](../questions/community.md#how-can-i-contribute-to-this-document)
+for more information.
+
+
 <!-- ANCHOR_END: cover -->
 
 ## Building

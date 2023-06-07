@@ -40,10 +40,12 @@ as described above.
 
 ### How can I contribute to this document?
 
-We encourage anyone interested in improving this document to make contributions
-to it. In order to add a new question:
+In order to add a new question:
 
-1. Add your question and answer to `src/questions.md`.
+1. Create a
+   [fork of the CHERI FAQ repository](https://github.com/CTSRD-CHERI/cheri-faq/fork).
+
+1. Add your question and answer to a file in `src/questions/`.
 
 1. Create a pull request in the
    [CTSRD-CHERI/cheri-faq](https://github.com/CTSRD-CHERI/cheri-faq/pulls)
