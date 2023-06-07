@@ -22,6 +22,14 @@ See
 for more information.
 
 
+## License
+
+The
+[CHERI FAQ repository](https://github.com/CTSRD-CHERI/cheri-faq/)
+is released under the
+[CC BY 4.0 license](https://github.com/CTSRD-CHERI/cheri-faq/blob/main/LICENSE).
+
+
 <!-- ANCHOR_END: cover -->
 
 ## Building
